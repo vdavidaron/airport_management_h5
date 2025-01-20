@@ -13,28 +13,225 @@ rule Terminal2Terminal {
     s : AIRPORT!Terminal
   to
     t : REFINED!Terminal (
-      name <- s.name,
-      floors <- s.floors->collect(f | thisModule.Floor2Floor(f)),
-	  ParkingAreas <- s.ParkingAreas->collect(src | thisModule.ParkingAreaToCarParkingArea(src))
+      name <- s.name
+      ,dropoff <- s.dropoff->collect(d | thisModule.DropOff2DropOff(d))
+      ,floors <- s.floors->collect(f | thisModule.Floor2Floor(f))
+	  ,flights <- s.flights->collect(f | thisModule.Flight2Flight(f))
+      ,airside <- s.airside->collect(a | thisModule.Airside2Airside(a))
+      ,landside <- s.landside->collect(l | thisModule.Landside2Landside(l))
+      ,ParkingAreas <- s.ParkingAreas->collect(pa | thisModule.ParkingArea2CarParkingArea(pa))
+      ,vipServices <- s.TransportationServices->collect(ts | thisModule.TransportationServices2VIPArea(ts))
     )
 }
 
--- Lazy rule to transform Floor from AIRPORT to REFINED
+lazy rule DropOff2DropOff {
+  from
+    s : AIRPORT!DropOff
+  to
+    t : REFINED!DropOff (
+      name <- s.name,
+      areaCorners <- s.areaCorners->collect(p | thisModule.Point2Point(p))
+    )
+}
+
 lazy rule Floor2Floor {
   from
-    f : AIRPORT!Floor
+    s : AIRPORT!Floor
   to
-    r : REFINED!Floor (
-      name <- f.name
+    t : REFINED!Floor (
+      name <- s.name
     )
 }
 
--- Rule to transform ParkingArea to CarParkingArea
-lazy rule ParkingAreaToCarParkingArea {
+lazy rule Airside2Airside {
   from
-    src : AIRPORT!ParkingArea
+    s : AIRPORT!Airside
   to
-    tgt : REFINED!CarParkingArea (
-      name <- src.name
+    t : REFINED!Airside (
+      commonAreas <- s.commonAreas->collect(ca | thisModule.CommonArea2CommonArea(ca)),
+      floor <- thisModule.Floor2Floor(s.floor),
+      gateArea <- s.gateArea->collect(ga | thisModule.GateArea2GateArea(ga))
     )
 }
+
+lazy rule Landside2Landside {
+  from
+    s : AIRPORT!Landside
+  to
+    t : REFINED!Landside (
+      commonAreas <- s.commonAreas->collect(ca | thisModule.CommonArea2CommonArea(ca)),
+      floor <- thisModule.Floor2Floor(s.floor)
+      ,departureArea <- thisModule.Departure2Departure(s.departureArea)
+      ,arrivalArea <- thisModule.Arrival2Arrival(s.arrivalArea)
+    )
+}
+
+lazy rule Flight2Flight {
+  from
+    s : AIRPORT!Flight
+  to
+    t : REFINED!Flight (
+      name <- s.name,
+      flightNumber <- s.flightNumber,
+      time <- s.time,
+      type <- s.type,
+      destinationCity <- thisModule.City2City(s.city)
+    )
+}
+
+lazy rule City2City {
+  from
+    cityName : String
+  to
+    t : REFINED!City (
+      name <- cityName,
+      country <- 'Unknown'  -- Set a default value for the country
+    )
+}
+
+lazy rule ParkingArea2CarParkingArea {
+  from
+    s : AIRPORT!ParkingArea
+  to
+    t : REFINED!CarParkingArea (
+      name <- s.name,
+      areaCorners <- s.areaCorners->collect(p | thisModule.Point2Point(p))
+    )
+}
+
+lazy rule TransportationServices2VIPArea {
+  from
+    s : AIRPORT!TransportationServices
+  to
+    t : REFINED!VIPArea (
+      name <- s.name,
+      areaCorners <- s.areaCorners->collect(p | thisModule.Point2Point(p)),
+      loungeType <- s.type.toString(),
+      capacity <- 50  -- Set a default capacity
+    )
+}
+
+lazy rule CommonArea2CommonArea {
+  from
+    s : AIRPORT!CommonArea
+  to
+    t : REFINED!CommonArea (
+      name <- s.name,
+      type <- s.type
+    )
+}
+
+lazy rule GateArea2GateArea {
+  from
+    s : AIRPORT!GateArea
+  to
+    t : REFINED!GateArea (
+      name <- s.name,
+      areaCorners <- s.areaCorners->collect(p | thisModule.Point2Point(p)),
+      gates <- s.gates->collect(g | thisModule.Gate2Gate(g))
+    )
+}
+
+lazy rule Gate2Gate {
+  from
+    s : AIRPORT!Gate
+  to
+    t : REFINED!Gate (
+      name <- s.name,
+      boarding <- s.boarding
+    )
+}
+
+lazy rule Departure2Departure {
+  from
+    s : AIRPORT!Departure
+  to
+    t : REFINED!Departure (
+      name <- s.name,
+      areaCorners <- s.areaCorners->collect(p | thisModule.Point2Point(p)),
+      security <- s.security->collect(sc | thisModule.SecurityCheck2SecurityCheck(sc)),
+      checkIn <- s.checkIn->collect(ci | thisModule.CheckIn2CheckIn(ci)),
+      baggageDropOff <- s.baggageDropOff->collect(bdo | thisModule.BaggageDropOff2BaggageDropOff(bdo))
+    )
+}
+
+lazy rule Arrival2Arrival {
+  from
+    s : AIRPORT!Arrival
+  to
+    t : REFINED!Arrival (
+      name <- s.name,
+      areaCorners <- s.areaCorners->collect(p | thisModule.Point2Point(p)),
+      baggageClaim <- s.baggageClaim->collect(bc | thisModule.BaggageClaim2BaggageClaim(bc))
+    )
+}
+
+lazy rule SecurityCheck2SecurityCheck {
+  from
+    s : AIRPORT!SecurityCheck
+  to
+    t : REFINED!SecurityCheck (
+      name <- s.name
+    )
+}
+
+lazy rule CheckIn2CheckIn {
+  from
+    s : AIRPORT!CheckIn
+  to
+    t : REFINED!CheckIn (
+      name <- s.name,
+      counters <- s.counters->collect(c | thisModule.Counter2Counter(c))
+    )
+}
+
+lazy rule Counter2Counter {
+  from
+    s : AIRPORT!Counter
+  to
+    t : REFINED!Counter (
+      name <- s.name
+    )
+}
+
+lazy rule BaggageDropOff2BaggageDropOff {
+  from
+    s : AIRPORT!BaggageDropOff
+  to
+    t : REFINED!BaggageDropOff (
+      name <- s.name,
+      areaCorners <- s.areaCorners->collect(p | thisModule.Point2Point(p)),
+      counters <- s.counters->collect(c | thisModule.Counter2Counter(c))
+    )
+}
+
+lazy rule BaggageClaim2BaggageClaim {
+  from
+    s : AIRPORT!BaggageClaim
+  to
+    t : REFINED!BaggageClaim (
+      name <- s.name,
+      areaCorners <- s.areaCorners->collect(p | thisModule.Point2Point(p)),
+      belts <- s.belts->collect(b | thisModule.Belt2Belt(b))
+    )
+}
+
+lazy rule Belt2Belt {
+  from
+    s : AIRPORT!Belt
+  to
+    t : REFINED!Belt (
+      name <- s.name
+    )
+}
+
+lazy rule Point2Point {
+  from
+    s : AIRPORT!Point
+  to
+    t : REFINED!Point (
+      x <- s.x,
+      y <- s.y
+    )
+}
+

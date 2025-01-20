@@ -1,5 +1,118 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<amr:Terminal xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:amr="http://example.org/airport_refined" name="Terminal1">
-  <floors name="GroundFloor"/>
-  <ParkingAreas/>
-</amr:Terminal>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:amr="http://example.org/airport_refined">
+  <amr:Terminal name="Terminal1" vipServices="/9 /10 /11">
+    <dropoff name="Kiss&amp;Leave">
+      <areaCorners y="10"/>
+      <areaCorners y="20"/>
+      <areaCorners x="10" y="10"/>
+      <areaCorners x="10" y="20"/>
+    </dropoff>
+    <floors name="GroundFloor"/>
+    <airside>
+      <commonAreas name="SittingArea"/>
+      <floor name="GroundFloor"/>
+      <gateArea name="Gate Area 1">
+        <areaCorners y="20"/>
+        <areaCorners y="30"/>
+        <areaCorners x="20" y="30"/>
+        <areaCorners x="30" y="20"/>
+        <gates name="Gate 1" boarding="true"/>
+        <gates name="Gate 2"/>
+        <gates name="Gate 3"/>
+        <gates name="Gate 4"/>
+        <gates name="Gate 5"/>
+      </gateArea>
+    </airside>
+    <landside>
+      <commonAreas name="Restroom 1" type="Restroom"/>
+      <commonAreas name="Restroom 2" type="Restroom"/>
+      <commonAreas name="Restroom 3" type="Restroom"/>
+      <commonAreas name="Restroom 4" type="Restroom"/>
+      <commonAreas name="Restroom 5" type="Restroom"/>
+      <commonAreas name="DAngelo" type="Dining"/>
+      <commonAreas name="Concorde" type="Dining"/>
+      <commonAreas name="Iannone" type="Retail"/>
+      <commonAreas name="Evangelista" type="Retail"/>
+      <commonAreas name="SittingArea"/>
+      <floor name="GroundFloor"/>
+      <departureArea name="Departure 1">
+        <areaCorners y="20"/>
+        <areaCorners y="30"/>
+        <areaCorners x="20" y="30"/>
+        <areaCorners x="20" y="40"/>
+        <security name="Security"/>
+        <checkIn name="CheckIn">
+          <counters name="1"/>
+          <counters name="2"/>
+          <counters name="3"/>
+        </checkIn>
+        <baggageDropOff>
+          <areaCorners y="20"/>
+          <areaCorners y="30"/>
+          <areaCorners x="20" y="30"/>
+          <areaCorners x="20" y="40"/>
+          <counters name="1"/>
+          <counters name="2"/>
+          <counters name="3"/>
+          <counters name="4"/>
+        </baggageDropOff>
+      </departureArea>
+      <arrivalArea name="Arrival 1">
+        <areaCorners x="30" y="40"/>
+        <areaCorners x="50" y="50"/>
+        <areaCorners x="30" y="40"/>
+        <areaCorners x="50" y="40"/>
+        <baggageClaim name="BC 1">
+          <areaCorners x="30" y="40"/>
+          <areaCorners x="50" y="40"/>
+          <areaCorners x="30" y="40"/>
+          <areaCorners x="50" y="50"/>
+          <belts name="1"/>
+          <belts name="2"/>
+          <belts name="3"/>
+          <belts name="4"/>
+        </baggageClaim>
+      </arrivalArea>
+    </landside>
+    <flights name="FR2294" flightNumber="FR2294" time="10:30" type="departure" destinationCity="/1"/>
+    <flights name="FR983" flightNumber="FR983" time="10:55" type="departure" destinationCity="/2"/>
+    <flights name="FR5013" flightNumber="FR5013" time="10:55" type="departure" destinationCity="/3"/>
+    <flights name="W45086" flightNumber="W45086" time="16:15" type="departure" destinationCity="/4"/>
+    <flights name="FR982" flightNumber="FR982" time="10:30" destinationCity="/5"/>
+    <flights name="FR2293" flightNumber="FR2293" time="10:30" destinationCity="/6"/>
+    <flights name="FR5016" flightNumber="FR5016" time="15:25" destinationCity="/7"/>
+    <flights name="W45085" flightNumber="W45085" time="15:40" destinationCity="/8"/>
+    <ParkingAreas>
+      <areaCorners y="60"/>
+      <areaCorners/>
+      <areaCorners y="10"/>
+      <areaCorners x="60" y="10"/>
+    </ParkingAreas>
+  </amr:Terminal>
+  <amr:City country="Unknown" name="Milano"/>
+  <amr:City country="Unknown" name="London"/>
+  <amr:City country="Unknown" name="Brussels"/>
+  <amr:City country="Unknown" name="Tirana"/>
+  <amr:City country="Unknown" name="London"/>
+  <amr:City country="Unknown" name="Milano"/>
+  <amr:City country="Unknown" name="Brussels"/>
+  <amr:City country="Unknown" name="Tirana"/>
+  <amr:VIPArea name="Taxi" loungeType="Taxi" capacity="50">
+    <areaCorners y="60"/>
+    <areaCorners y="70"/>
+    <areaCorners x="60" y="10"/>
+    <areaCorners x="70" y="10"/>
+  </amr:VIPArea>
+  <amr:VIPArea name="Bus" loungeType="Bus" capacity="50">
+    <areaCorners y="70"/>
+    <areaCorners y="80"/>
+    <areaCorners x="70" y="10"/>
+    <areaCorners x="80" y="10"/>
+  </amr:VIPArea>
+  <amr:VIPArea name="Train" loungeType="Train" capacity="50">
+    <areaCorners y="80"/>
+    <areaCorners y="60"/>
+    <areaCorners x="60" y="10"/>
+    <areaCorners x="80" y="10"/>
+  </amr:VIPArea>
+</xmi:XMI>
