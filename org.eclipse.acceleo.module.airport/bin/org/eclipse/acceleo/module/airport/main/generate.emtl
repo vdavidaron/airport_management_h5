@@ -1,0 +1,2297 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:mtl="http://www.eclipse.org/acceleo/mtl/3.0" xmlns:ocl.ecore="http://www.eclipse.org/ocl/1.1.0/Ecore">
+  <mtl:Module name="generate" nsURI="org::eclipse::acceleo::module::airport::main::generate" startHeaderPosition="29" endHeaderPosition="148">
+    <input>
+      <takesTypesFrom href="http://example.org/airport#/"/>
+    </input>
+    <ownedModuleElement xsi:type="mtl:Template" name="generateElement" visibility="Public" main="true">
+      <body xsi:type="mtl:FileBlock" openMode="OverWrite">
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&lt;html>&#xA;&#x9;&lt;style>&#xA;&#x9;table, th, td {&#xA;&#x9;  border:1px solid black;&#xA;&#x9;  border-collapse: collapse;&#xA;&#x9;}&#xA;&#x9;th, td {&#xA;&#x9;  padding: 8px;&#xA;&#x9;  text-align: left;&#xA;&#x9;}&#xA;&#x9;&lt;/style>&#xA;  &lt;head>&#xA;    &lt;title>Terminal Overview&lt;/title>&#xA;  &lt;/head>&#xA;  &lt;body>&#xA;    &lt;h1>Terminal: "/>
+        <body xsi:type="ocl.ecore:PropertyCallExp">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+          <source xsi:type="ocl.ecore:VariableExp" name="aTerminal" referredVariable="/0/generateElement/aTerminal">
+            <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Terminal"/>
+          </source>
+          <referredProperty xsi:type="ecore:EAttribute" href="http://example.org/airport#//namedElement/name"/>
+        </body>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&lt;/h1>&#xA;&#xA;    &lt;h2>Drop-off&lt;/h2>&#xA;    &lt;p>Name: "/>
+        <body xsi:type="ocl.ecore:IteratorExp" name="collect" eType="/9/Sequence(String)">
+          <source xsi:type="ocl.ecore:PropertyCallExp" eType="/9/OrderedSet(DropOff)">
+            <source xsi:type="ocl.ecore:VariableExp" name="aTerminal" referredVariable="/0/generateElement/aTerminal">
+              <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Terminal"/>
+            </source>
+            <referredProperty xsi:type="ecore:EReference" href="http://example.org/airport#//Terminal/dropoff"/>
+          </source>
+          <body xsi:type="ocl.ecore:PropertyCallExp">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+            <source xsi:type="ocl.ecore:VariableExp" name="temp1" referredVariable="/0/generateElement/%/collect/temp1">
+              <eType xsi:type="ecore:EClass" href="http://example.org/airport#//DropOff"/>
+            </source>
+            <referredProperty xsi:type="ecore:EAttribute" href="http://example.org/airport#//namedElement/name"/>
+          </body>
+          <iterator xsi:type="ocl.ecore:Variable" name="temp1">
+            <eType xsi:type="ecore:EClass" href="http://example.org/airport#//DropOff"/>
+          </iterator>
+        </body>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&lt;/p>&#xA;    &lt;p>Area Corner Y: "/>
+        <body xsi:type="ocl.ecore:IteratorExp" name="collect" eType="/9/Sequence(Integer)">
+          <source xsi:type="ocl.ecore:IteratorExp" name="collect" eType="/9/Sequence(Point)">
+            <source xsi:type="ocl.ecore:PropertyCallExp" eType="/9/OrderedSet(DropOff)">
+              <source xsi:type="ocl.ecore:VariableExp" name="aTerminal" referredVariable="/0/generateElement/aTerminal">
+                <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Terminal"/>
+              </source>
+              <referredProperty xsi:type="ecore:EReference" href="http://example.org/airport#//Terminal/dropoff"/>
+            </source>
+            <body xsi:type="ocl.ecore:PropertyCallExp" eType="/9/OrderedSet(Point)">
+              <source xsi:type="ocl.ecore:VariableExp" name="temp1" referredVariable="/0/generateElement/%/collect.1/collect/temp2">
+                <eType xsi:type="ecore:EClass" href="http://example.org/airport#//DropOff"/>
+              </source>
+              <referredProperty xsi:type="ecore:EReference" href="http://example.org/airport#//Area/areaCorners"/>
+            </body>
+            <iterator xsi:type="ocl.ecore:Variable" name="temp2">
+              <eType xsi:type="ecore:EClass" href="http://example.org/airport#//DropOff"/>
+            </iterator>
+          </source>
+          <body xsi:type="ocl.ecore:PropertyCallExp">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"/>
+            <source xsi:type="ocl.ecore:VariableExp" name="temp2" referredVariable="/0/generateElement/%/collect.1/temp3">
+              <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Point"/>
+            </source>
+            <referredProperty xsi:type="ecore:EAttribute" href="http://example.org/airport#//Point/y"/>
+          </body>
+          <iterator xsi:type="ocl.ecore:Variable" name="temp3">
+            <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Point"/>
+          </iterator>
+        </body>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&lt;/p>&#xA;&#xA;    &lt;h2>Floors&lt;/h2>&#xA;    &lt;ul>&#xA;"/>
+        <body xsi:type="mtl:ForBlock">
+          <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="      &lt;li>"/>
+          <body xsi:type="ocl.ecore:PropertyCallExp">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+            <source xsi:type="ocl.ecore:VariableExp" name="f" referredVariable="/0/generateElement/%/%.5/f">
+              <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Floor"/>
+            </source>
+            <referredProperty xsi:type="ecore:EAttribute" href="http://example.org/airport#//namedElement/name"/>
+          </body>
+          <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&lt;/li>&#xA;"/>
+          <loopVariable name="f">
+            <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Floor"/>
+          </loopVariable>
+          <iterSet xsi:type="ocl.ecore:PropertyCallExp" eType="/9/OrderedSet(Floor)">
+            <source xsi:type="ocl.ecore:VariableExp" name="aTerminal" referredVariable="/0/generateElement/aTerminal">
+              <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Terminal"/>
+            </source>
+            <referredProperty xsi:type="ecore:EReference" href="http://example.org/airport#//Terminal/floors"/>
+          </iterSet>
+        </body>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="    &lt;/ul>&#xA;&#xA;    &lt;h2>Airside&lt;/h2>&#xA;    &lt;p>Floor: "/>
+        <body xsi:type="ocl.ecore:IteratorExp" name="collect" eType="/9/Sequence(String)">
+          <source xsi:type="ocl.ecore:IteratorExp" name="collect" eType="/9/Sequence(Floor)">
+            <source xsi:type="ocl.ecore:PropertyCallExp" eType="/9/OrderedSet(Airside)">
+              <source xsi:type="ocl.ecore:VariableExp" name="aTerminal" referredVariable="/0/generateElement/aTerminal">
+                <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Terminal"/>
+              </source>
+              <referredProperty xsi:type="ecore:EReference" href="http://example.org/airport#//Terminal/airside"/>
+            </source>
+            <body xsi:type="ocl.ecore:PropertyCallExp">
+              <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Floor"/>
+              <source xsi:type="ocl.ecore:VariableExp" name="temp1" referredVariable="/0/generateElement/%/collect.2/collect/temp4">
+                <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Airside"/>
+              </source>
+              <referredProperty xsi:type="ecore:EReference" href="http://example.org/airport#//Division/floor"/>
+            </body>
+            <iterator xsi:type="ocl.ecore:Variable" name="temp4">
+              <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Airside"/>
+            </iterator>
+          </source>
+          <body xsi:type="ocl.ecore:PropertyCallExp">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+            <source xsi:type="ocl.ecore:VariableExp" name="temp2" referredVariable="/0/generateElement/%/collect.2/temp5">
+              <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Floor"/>
+            </source>
+            <referredProperty xsi:type="ecore:EAttribute" href="http://example.org/airport#//namedElement/name"/>
+          </body>
+          <iterator xsi:type="ocl.ecore:Variable" name="temp5">
+            <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Floor"/>
+          </iterator>
+        </body>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&lt;/p>&#xA;    &lt;h3>Gate Area&lt;/h3>&#xA;    &lt;p>Name: "/>
+        <body xsi:type="ocl.ecore:IteratorExp" name="collect" eType="/9/Sequence(String)">
+          <source xsi:type="ocl.ecore:IteratorExp" name="collect" eType="/9/Sequence(GateArea)">
+            <source xsi:type="ocl.ecore:PropertyCallExp" eType="/9/OrderedSet(Airside)">
+              <source xsi:type="ocl.ecore:VariableExp" name="aTerminal" referredVariable="/0/generateElement/aTerminal">
+                <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Terminal"/>
+              </source>
+              <referredProperty xsi:type="ecore:EReference" href="http://example.org/airport#//Terminal/airside"/>
+            </source>
+            <body xsi:type="ocl.ecore:PropertyCallExp" eType="/9/OrderedSet(GateArea)">
+              <source xsi:type="ocl.ecore:VariableExp" name="temp1" referredVariable="/0/generateElement/%/collect.3/collect/temp6">
+                <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Airside"/>
+              </source>
+              <referredProperty xsi:type="ecore:EReference" href="http://example.org/airport#//Airside/gateArea"/>
+            </body>
+            <iterator xsi:type="ocl.ecore:Variable" name="temp6">
+              <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Airside"/>
+            </iterator>
+          </source>
+          <body xsi:type="ocl.ecore:PropertyCallExp">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+            <source xsi:type="ocl.ecore:VariableExp" name="temp2" referredVariable="/0/generateElement/%/collect.3/temp7">
+              <eType xsi:type="ecore:EClass" href="http://example.org/airport#//GateArea"/>
+            </source>
+            <referredProperty xsi:type="ecore:EAttribute" href="http://example.org/airport#//namedElement/name"/>
+          </body>
+          <iterator xsi:type="ocl.ecore:Variable" name="temp7">
+            <eType xsi:type="ecore:EClass" href="http://example.org/airport#//GateArea"/>
+          </iterator>
+        </body>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&lt;/p>&#xA;    &lt;p>Total Gates: "/>
+        <body xsi:type="ocl.ecore:IteratorExp" name="collect" eType="/9/Sequence(Integer)">
+          <source xsi:type="ocl.ecore:IteratorExp" name="collect" eType="/9/Sequence(GateArea)">
+            <source xsi:type="ocl.ecore:PropertyCallExp" eType="/9/OrderedSet(Airside)">
+              <source xsi:type="ocl.ecore:VariableExp" name="aTerminal" referredVariable="/0/generateElement/aTerminal">
+                <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Terminal"/>
+              </source>
+              <referredProperty xsi:type="ecore:EReference" href="http://example.org/airport#//Terminal/airside"/>
+            </source>
+            <body xsi:type="ocl.ecore:PropertyCallExp" eType="/9/OrderedSet(GateArea)">
+              <source xsi:type="ocl.ecore:VariableExp" name="temp1" referredVariable="/0/generateElement/%/collect.4/collect/temp8">
+                <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Airside"/>
+              </source>
+              <referredProperty xsi:type="ecore:EReference" href="http://example.org/airport#//Airside/gateArea"/>
+            </body>
+            <iterator xsi:type="ocl.ecore:Variable" name="temp8">
+              <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Airside"/>
+            </iterator>
+          </source>
+          <body xsi:type="ocl.ecore:PropertyCallExp">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"/>
+            <source xsi:type="ocl.ecore:VariableExp" name="temp2" referredVariable="/0/generateElement/%/collect.4/temp9">
+              <eType xsi:type="ecore:EClass" href="http://example.org/airport#//GateArea"/>
+            </source>
+            <referredProperty xsi:type="ecore:EAttribute" href="http://example.org/airport#//GateArea/totalGates"/>
+          </body>
+          <iterator xsi:type="ocl.ecore:Variable" name="temp9">
+            <eType xsi:type="ecore:EClass" href="http://example.org/airport#//GateArea"/>
+          </iterator>
+        </body>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&lt;/p>&#xA;    &lt;p>Area Corner Y: "/>
+        <body xsi:type="ocl.ecore:IteratorExp" name="collect" eType="/9/Sequence(Integer)">
+          <source xsi:type="ocl.ecore:IteratorExp" name="collect" eType="/9/Sequence(Point)">
+            <source xsi:type="ocl.ecore:IteratorExp" name="collect" eType="/9/Sequence(GateArea)">
+              <source xsi:type="ocl.ecore:PropertyCallExp" eType="/9/OrderedSet(Airside)">
+                <source xsi:type="ocl.ecore:VariableExp" name="aTerminal" referredVariable="/0/generateElement/aTerminal">
+                  <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Terminal"/>
+                </source>
+                <referredProperty xsi:type="ecore:EReference" href="http://example.org/airport#//Terminal/airside"/>
+              </source>
+              <body xsi:type="ocl.ecore:PropertyCallExp" eType="/9/OrderedSet(GateArea)">
+                <source xsi:type="ocl.ecore:VariableExp" name="temp1" referredVariable="/0/generateElement/%/collect.5/collect/collect/temp10">
+                  <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Airside"/>
+                </source>
+                <referredProperty xsi:type="ecore:EReference" href="http://example.org/airport#//Airside/gateArea"/>
+              </body>
+              <iterator xsi:type="ocl.ecore:Variable" name="temp10">
+                <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Airside"/>
+              </iterator>
+            </source>
+            <body xsi:type="ocl.ecore:PropertyCallExp" eType="/9/OrderedSet(Point)">
+              <source xsi:type="ocl.ecore:VariableExp" name="temp2" referredVariable="/0/generateElement/%/collect.5/collect/temp11">
+                <eType xsi:type="ecore:EClass" href="http://example.org/airport#//GateArea"/>
+              </source>
+              <referredProperty xsi:type="ecore:EReference" href="http://example.org/airport#//Area/areaCorners"/>
+            </body>
+            <iterator xsi:type="ocl.ecore:Variable" name="temp11">
+              <eType xsi:type="ecore:EClass" href="http://example.org/airport#//GateArea"/>
+            </iterator>
+          </source>
+          <body xsi:type="ocl.ecore:PropertyCallExp">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"/>
+            <source xsi:type="ocl.ecore:VariableExp" name="temp3" referredVariable="/0/generateElement/%/collect.5/temp12">
+              <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Point"/>
+            </source>
+            <referredProperty xsi:type="ecore:EAttribute" href="http://example.org/airport#//Point/y"/>
+          </body>
+          <iterator xsi:type="ocl.ecore:Variable" name="temp12">
+            <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Point"/>
+          </iterator>
+        </body>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&lt;/p>&#xA;    &lt;ul>&#xA;      &lt;li>Gate Name: "/>
+        <body xsi:type="ocl.ecore:IteratorExp" name="collect" eType="/9/Sequence(String)">
+          <source xsi:type="ocl.ecore:IteratorExp" name="collect" eType="/9/Sequence(Gate)">
+            <source xsi:type="ocl.ecore:IteratorExp" name="collect" eType="/9/Sequence(GateArea)">
+              <source xsi:type="ocl.ecore:PropertyCallExp" eType="/9/OrderedSet(Airside)">
+                <source xsi:type="ocl.ecore:VariableExp" name="aTerminal" referredVariable="/0/generateElement/aTerminal">
+                  <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Terminal"/>
+                </source>
+                <referredProperty xsi:type="ecore:EReference" href="http://example.org/airport#//Terminal/airside"/>
+              </source>
+              <body xsi:type="ocl.ecore:PropertyCallExp" eType="/9/OrderedSet(GateArea)">
+                <source xsi:type="ocl.ecore:VariableExp" name="temp1" referredVariable="/0/generateElement/%/collect.6/collect/collect/temp13">
+                  <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Airside"/>
+                </source>
+                <referredProperty xsi:type="ecore:EReference" href="http://example.org/airport#//Airside/gateArea"/>
+              </body>
+              <iterator xsi:type="ocl.ecore:Variable" name="temp13">
+                <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Airside"/>
+              </iterator>
+            </source>
+            <body xsi:type="ocl.ecore:PropertyCallExp" eType="/9/OrderedSet(Gate)">
+              <source xsi:type="ocl.ecore:VariableExp" name="temp2" referredVariable="/0/generateElement/%/collect.6/collect/temp14">
+                <eType xsi:type="ecore:EClass" href="http://example.org/airport#//GateArea"/>
+              </source>
+              <referredProperty xsi:type="ecore:EReference" href="http://example.org/airport#//GateArea/gates"/>
+            </body>
+            <iterator xsi:type="ocl.ecore:Variable" name="temp14">
+              <eType xsi:type="ecore:EClass" href="http://example.org/airport#//GateArea"/>
+            </iterator>
+          </source>
+          <body xsi:type="ocl.ecore:PropertyCallExp">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+            <source xsi:type="ocl.ecore:VariableExp" name="temp3" referredVariable="/0/generateElement/%/collect.6/temp15">
+              <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Gate"/>
+            </source>
+            <referredProperty xsi:type="ecore:EAttribute" href="http://example.org/airport#//namedElement/name"/>
+          </body>
+          <iterator xsi:type="ocl.ecore:Variable" name="temp15">
+            <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Gate"/>
+          </iterator>
+        </body>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&lt;/li>&#xA;      &lt;li>Flight: "/>
+        <body xsi:type="ocl.ecore:IteratorExp" name="collect" eType="/9/Sequence(Flight)">
+          <source xsi:type="ocl.ecore:IteratorExp" name="collect" eType="/9/Sequence(Gate)">
+            <source xsi:type="ocl.ecore:IteratorExp" name="collect" eType="/9/Sequence(GateArea)">
+              <source xsi:type="ocl.ecore:PropertyCallExp" eType="/9/OrderedSet(Airside)">
+                <source xsi:type="ocl.ecore:VariableExp" name="aTerminal" referredVariable="/0/generateElement/aTerminal">
+                  <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Terminal"/>
+                </source>
+                <referredProperty xsi:type="ecore:EReference" href="http://example.org/airport#//Terminal/airside"/>
+              </source>
+              <body xsi:type="ocl.ecore:PropertyCallExp" eType="/9/OrderedSet(GateArea)">
+                <source xsi:type="ocl.ecore:VariableExp" name="temp1" referredVariable="/0/generateElement/%/collect.7/collect/collect/temp16">
+                  <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Airside"/>
+                </source>
+                <referredProperty xsi:type="ecore:EReference" href="http://example.org/airport#//Airside/gateArea"/>
+              </body>
+              <iterator xsi:type="ocl.ecore:Variable" name="temp16">
+                <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Airside"/>
+              </iterator>
+            </source>
+            <body xsi:type="ocl.ecore:PropertyCallExp" eType="/9/OrderedSet(Gate)">
+              <source xsi:type="ocl.ecore:VariableExp" name="temp2" referredVariable="/0/generateElement/%/collect.7/collect/temp17">
+                <eType xsi:type="ecore:EClass" href="http://example.org/airport#//GateArea"/>
+              </source>
+              <referredProperty xsi:type="ecore:EReference" href="http://example.org/airport#//GateArea/gates"/>
+            </body>
+            <iterator xsi:type="ocl.ecore:Variable" name="temp17">
+              <eType xsi:type="ecore:EClass" href="http://example.org/airport#//GateArea"/>
+            </iterator>
+          </source>
+          <body xsi:type="ocl.ecore:PropertyCallExp">
+            <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Flight"/>
+            <source xsi:type="ocl.ecore:VariableExp" name="temp3" referredVariable="/0/generateElement/%/collect.7/temp18">
+              <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Gate"/>
+            </source>
+            <referredProperty xsi:type="ecore:EReference" href="http://example.org/airport#//Gate/flight"/>
+          </body>
+          <iterator xsi:type="ocl.ecore:Variable" name="temp18">
+            <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Gate"/>
+          </iterator>
+        </body>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&lt;/li>&#xA;    &lt;/ul>&#xA;&#xA;    &lt;h2>Landside&lt;/h2>&#xA;    &lt;p>Floor: "/>
+        <body xsi:type="ocl.ecore:IteratorExp" name="collect" eType="/9/Sequence(String)">
+          <source xsi:type="ocl.ecore:IteratorExp" name="collect" eType="/9/Sequence(Floor)">
+            <source xsi:type="ocl.ecore:PropertyCallExp" eType="/9/OrderedSet(Landside)">
+              <source xsi:type="ocl.ecore:VariableExp" name="aTerminal" referredVariable="/0/generateElement/aTerminal">
+                <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Terminal"/>
+              </source>
+              <referredProperty xsi:type="ecore:EReference" href="http://example.org/airport#//Terminal/landside"/>
+            </source>
+            <body xsi:type="ocl.ecore:PropertyCallExp">
+              <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Floor"/>
+              <source xsi:type="ocl.ecore:VariableExp" name="temp1" referredVariable="/0/generateElement/%/collect.8/collect/temp19">
+                <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Landside"/>
+              </source>
+              <referredProperty xsi:type="ecore:EReference" href="http://example.org/airport#//Division/floor"/>
+            </body>
+            <iterator xsi:type="ocl.ecore:Variable" name="temp19">
+              <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Landside"/>
+            </iterator>
+          </source>
+          <body xsi:type="ocl.ecore:PropertyCallExp">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+            <source xsi:type="ocl.ecore:VariableExp" name="temp2" referredVariable="/0/generateElement/%/collect.8/temp20">
+              <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Floor"/>
+            </source>
+            <referredProperty xsi:type="ecore:EAttribute" href="http://example.org/airport#//namedElement/name"/>
+          </body>
+          <iterator xsi:type="ocl.ecore:Variable" name="temp20">
+            <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Floor"/>
+          </iterator>
+        </body>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&lt;/p>&#xA;    &lt;h3>Departure Area&lt;/h3>&#xA;    &lt;p>Name: "/>
+        <body xsi:type="ocl.ecore:IteratorExp" name="collect" eType="/9/Sequence(String)">
+          <source xsi:type="ocl.ecore:IteratorExp" name="collect" eType="/9/Sequence(Departure)">
+            <source xsi:type="ocl.ecore:PropertyCallExp" eType="/9/OrderedSet(Landside)">
+              <source xsi:type="ocl.ecore:VariableExp" name="aTerminal" referredVariable="/0/generateElement/aTerminal">
+                <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Terminal"/>
+              </source>
+              <referredProperty xsi:type="ecore:EReference" href="http://example.org/airport#//Terminal/landside"/>
+            </source>
+            <body xsi:type="ocl.ecore:PropertyCallExp">
+              <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Departure"/>
+              <source xsi:type="ocl.ecore:VariableExp" name="temp1" referredVariable="/0/generateElement/%/collect.9/collect/temp21">
+                <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Landside"/>
+              </source>
+              <referredProperty xsi:type="ecore:EReference" href="http://example.org/airport#//Landside/departureArea"/>
+            </body>
+            <iterator xsi:type="ocl.ecore:Variable" name="temp21">
+              <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Landside"/>
+            </iterator>
+          </source>
+          <body xsi:type="ocl.ecore:PropertyCallExp">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+            <source xsi:type="ocl.ecore:VariableExp" name="temp2" referredVariable="/0/generateElement/%/collect.9/temp22">
+              <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Departure"/>
+            </source>
+            <referredProperty xsi:type="ecore:EAttribute" href="http://example.org/airport#//namedElement/name"/>
+          </body>
+          <iterator xsi:type="ocl.ecore:Variable" name="temp22">
+            <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Departure"/>
+          </iterator>
+        </body>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&lt;/p>&#xA;    &lt;h4>Baggage Drop-Off&lt;/h4>&#xA;    &lt;p>Area Corners: "/>
+        <body xsi:type="ocl.ecore:IteratorExp" name="collect" eType="/9/Sequence(Point)">
+          <source xsi:type="ocl.ecore:IteratorExp" name="collect" eType="/9/Sequence(BaggageDropOff)">
+            <source xsi:type="ocl.ecore:IteratorExp" name="collect" eType="/9/Sequence(Departure)">
+              <source xsi:type="ocl.ecore:PropertyCallExp" eType="/9/OrderedSet(Landside)">
+                <source xsi:type="ocl.ecore:VariableExp" name="aTerminal" referredVariable="/0/generateElement/aTerminal">
+                  <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Terminal"/>
+                </source>
+                <referredProperty xsi:type="ecore:EReference" href="http://example.org/airport#//Terminal/landside"/>
+              </source>
+              <body xsi:type="ocl.ecore:PropertyCallExp">
+                <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Departure"/>
+                <source xsi:type="ocl.ecore:VariableExp" name="temp1" referredVariable="/0/generateElement/%/collect.10/collect/collect/temp23">
+                  <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Landside"/>
+                </source>
+                <referredProperty xsi:type="ecore:EReference" href="http://example.org/airport#//Landside/departureArea"/>
+              </body>
+              <iterator xsi:type="ocl.ecore:Variable" name="temp23">
+                <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Landside"/>
+              </iterator>
+            </source>
+            <body xsi:type="ocl.ecore:PropertyCallExp" eType="/9/OrderedSet(BaggageDropOff)">
+              <source xsi:type="ocl.ecore:VariableExp" name="temp2" referredVariable="/0/generateElement/%/collect.10/collect/temp24">
+                <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Departure"/>
+              </source>
+              <referredProperty xsi:type="ecore:EReference" href="http://example.org/airport#//Departure/baggageDropOff"/>
+            </body>
+            <iterator xsi:type="ocl.ecore:Variable" name="temp24">
+              <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Departure"/>
+            </iterator>
+          </source>
+          <body xsi:type="ocl.ecore:PropertyCallExp" eType="/9/OrderedSet(Point)">
+            <source xsi:type="ocl.ecore:VariableExp" name="temp3" referredVariable="/0/generateElement/%/collect.10/temp25">
+              <eType xsi:type="ecore:EClass" href="http://example.org/airport#//BaggageDropOff"/>
+            </source>
+            <referredProperty xsi:type="ecore:EReference" href="http://example.org/airport#//Area/areaCorners"/>
+          </body>
+          <iterator xsi:type="ocl.ecore:Variable" name="temp25">
+            <eType xsi:type="ecore:EClass" href="http://example.org/airport#//BaggageDropOff"/>
+          </iterator>
+        </body>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&lt;/p>&#xA;    &lt;p>Counters: "/>
+        <body xsi:type="ocl.ecore:IteratorExp" name="collect" eType="/9/Sequence(Counter)">
+          <source xsi:type="ocl.ecore:IteratorExp" name="collect" eType="/9/Sequence(BaggageDropOff)">
+            <source xsi:type="ocl.ecore:IteratorExp" name="collect" eType="/9/Sequence(Departure)">
+              <source xsi:type="ocl.ecore:PropertyCallExp" eType="/9/OrderedSet(Landside)">
+                <source xsi:type="ocl.ecore:VariableExp" name="aTerminal" referredVariable="/0/generateElement/aTerminal">
+                  <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Terminal"/>
+                </source>
+                <referredProperty xsi:type="ecore:EReference" href="http://example.org/airport#//Terminal/landside"/>
+              </source>
+              <body xsi:type="ocl.ecore:PropertyCallExp">
+                <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Departure"/>
+                <source xsi:type="ocl.ecore:VariableExp" name="temp1" referredVariable="/0/generateElement/%/collect.11/collect/collect/temp26">
+                  <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Landside"/>
+                </source>
+                <referredProperty xsi:type="ecore:EReference" href="http://example.org/airport#//Landside/departureArea"/>
+              </body>
+              <iterator xsi:type="ocl.ecore:Variable" name="temp26">
+                <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Landside"/>
+              </iterator>
+            </source>
+            <body xsi:type="ocl.ecore:PropertyCallExp" eType="/9/OrderedSet(BaggageDropOff)">
+              <source xsi:type="ocl.ecore:VariableExp" name="temp2" referredVariable="/0/generateElement/%/collect.11/collect/temp27">
+                <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Departure"/>
+              </source>
+              <referredProperty xsi:type="ecore:EReference" href="http://example.org/airport#//Departure/baggageDropOff"/>
+            </body>
+            <iterator xsi:type="ocl.ecore:Variable" name="temp27">
+              <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Departure"/>
+            </iterator>
+          </source>
+          <body xsi:type="ocl.ecore:PropertyCallExp" eType="/9/OrderedSet(Counter)">
+            <source xsi:type="ocl.ecore:VariableExp" name="temp3" referredVariable="/0/generateElement/%/collect.11/temp28">
+              <eType xsi:type="ecore:EClass" href="http://example.org/airport#//BaggageDropOff"/>
+            </source>
+            <referredProperty xsi:type="ecore:EReference" href="http://example.org/airport#//BaggageDropOff/counters"/>
+          </body>
+          <iterator xsi:type="ocl.ecore:Variable" name="temp28">
+            <eType xsi:type="ecore:EClass" href="http://example.org/airport#//BaggageDropOff"/>
+          </iterator>
+        </body>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&lt;/p>&#xA;    &lt;h3>Arrival Area&lt;/h3>&#xA;    &lt;p>Name: "/>
+        <body xsi:type="ocl.ecore:IteratorExp" name="collect" eType="/9/Sequence(String)">
+          <source xsi:type="ocl.ecore:IteratorExp" name="collect" eType="/9/Sequence(Arrival)">
+            <source xsi:type="ocl.ecore:PropertyCallExp" eType="/9/OrderedSet(Landside)">
+              <source xsi:type="ocl.ecore:VariableExp" name="aTerminal" referredVariable="/0/generateElement/aTerminal">
+                <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Terminal"/>
+              </source>
+              <referredProperty xsi:type="ecore:EReference" href="http://example.org/airport#//Terminal/landside"/>
+            </source>
+            <body xsi:type="ocl.ecore:PropertyCallExp">
+              <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Arrival"/>
+              <source xsi:type="ocl.ecore:VariableExp" name="temp1" referredVariable="/0/generateElement/%/collect.12/collect/temp29">
+                <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Landside"/>
+              </source>
+              <referredProperty xsi:type="ecore:EReference" href="http://example.org/airport#//Landside/arrivalArea"/>
+            </body>
+            <iterator xsi:type="ocl.ecore:Variable" name="temp29">
+              <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Landside"/>
+            </iterator>
+          </source>
+          <body xsi:type="ocl.ecore:PropertyCallExp">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+            <source xsi:type="ocl.ecore:VariableExp" name="temp2" referredVariable="/0/generateElement/%/collect.12/temp30">
+              <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Arrival"/>
+            </source>
+            <referredProperty xsi:type="ecore:EAttribute" href="http://example.org/airport#//namedElement/name"/>
+          </body>
+          <iterator xsi:type="ocl.ecore:Variable" name="temp30">
+            <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Arrival"/>
+          </iterator>
+        </body>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&lt;/p>&#xA;    &lt;h4>Baggage Claim&lt;/h4>&#xA;    &lt;p>Area Corners: "/>
+        <body xsi:type="ocl.ecore:IteratorExp" name="collect" eType="/9/Sequence(Point)">
+          <source xsi:type="ocl.ecore:IteratorExp" name="collect" eType="/9/Sequence(BaggageClaim)">
+            <source xsi:type="ocl.ecore:IteratorExp" name="collect" eType="/9/Sequence(Arrival)">
+              <source xsi:type="ocl.ecore:PropertyCallExp" eType="/9/OrderedSet(Landside)">
+                <source xsi:type="ocl.ecore:VariableExp" name="aTerminal" referredVariable="/0/generateElement/aTerminal">
+                  <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Terminal"/>
+                </source>
+                <referredProperty xsi:type="ecore:EReference" href="http://example.org/airport#//Terminal/landside"/>
+              </source>
+              <body xsi:type="ocl.ecore:PropertyCallExp">
+                <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Arrival"/>
+                <source xsi:type="ocl.ecore:VariableExp" name="temp1" referredVariable="/0/generateElement/%/collect.13/collect/collect/temp31">
+                  <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Landside"/>
+                </source>
+                <referredProperty xsi:type="ecore:EReference" href="http://example.org/airport#//Landside/arrivalArea"/>
+              </body>
+              <iterator xsi:type="ocl.ecore:Variable" name="temp31">
+                <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Landside"/>
+              </iterator>
+            </source>
+            <body xsi:type="ocl.ecore:PropertyCallExp" eType="/9/OrderedSet(BaggageClaim)">
+              <source xsi:type="ocl.ecore:VariableExp" name="temp2" referredVariable="/0/generateElement/%/collect.13/collect/temp32">
+                <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Arrival"/>
+              </source>
+              <referredProperty xsi:type="ecore:EReference" href="http://example.org/airport#//Arrival/baggageClaim"/>
+            </body>
+            <iterator xsi:type="ocl.ecore:Variable" name="temp32">
+              <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Arrival"/>
+            </iterator>
+          </source>
+          <body xsi:type="ocl.ecore:PropertyCallExp" eType="/9/OrderedSet(Point)">
+            <source xsi:type="ocl.ecore:VariableExp" name="temp3" referredVariable="/0/generateElement/%/collect.13/temp33">
+              <eType xsi:type="ecore:EClass" href="http://example.org/airport#//BaggageClaim"/>
+            </source>
+            <referredProperty xsi:type="ecore:EReference" href="http://example.org/airport#//Area/areaCorners"/>
+          </body>
+          <iterator xsi:type="ocl.ecore:Variable" name="temp33">
+            <eType xsi:type="ecore:EClass" href="http://example.org/airport#//BaggageClaim"/>
+          </iterator>
+        </body>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&lt;/p>&#xA;    &lt;p>Belts: "/>
+        <body xsi:type="ocl.ecore:IteratorExp" name="collect" eType="/9/Sequence(Belt)">
+          <source xsi:type="ocl.ecore:IteratorExp" name="collect" eType="/9/Sequence(BaggageClaim)">
+            <source xsi:type="ocl.ecore:IteratorExp" name="collect" eType="/9/Sequence(Arrival)">
+              <source xsi:type="ocl.ecore:PropertyCallExp" eType="/9/OrderedSet(Landside)">
+                <source xsi:type="ocl.ecore:VariableExp" name="aTerminal" referredVariable="/0/generateElement/aTerminal">
+                  <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Terminal"/>
+                </source>
+                <referredProperty xsi:type="ecore:EReference" href="http://example.org/airport#//Terminal/landside"/>
+              </source>
+              <body xsi:type="ocl.ecore:PropertyCallExp">
+                <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Arrival"/>
+                <source xsi:type="ocl.ecore:VariableExp" name="temp1" referredVariable="/0/generateElement/%/collect.14/collect/collect/temp34">
+                  <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Landside"/>
+                </source>
+                <referredProperty xsi:type="ecore:EReference" href="http://example.org/airport#//Landside/arrivalArea"/>
+              </body>
+              <iterator xsi:type="ocl.ecore:Variable" name="temp34">
+                <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Landside"/>
+              </iterator>
+            </source>
+            <body xsi:type="ocl.ecore:PropertyCallExp" eType="/9/OrderedSet(BaggageClaim)">
+              <source xsi:type="ocl.ecore:VariableExp" name="temp2" referredVariable="/0/generateElement/%/collect.14/collect/temp35">
+                <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Arrival"/>
+              </source>
+              <referredProperty xsi:type="ecore:EReference" href="http://example.org/airport#//Arrival/baggageClaim"/>
+            </body>
+            <iterator xsi:type="ocl.ecore:Variable" name="temp35">
+              <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Arrival"/>
+            </iterator>
+          </source>
+          <body xsi:type="ocl.ecore:PropertyCallExp" eType="/9/OrderedSet(Belt)">
+            <source xsi:type="ocl.ecore:VariableExp" name="temp3" referredVariable="/0/generateElement/%/collect.14/temp36">
+              <eType xsi:type="ecore:EClass" href="http://example.org/airport#//BaggageClaim"/>
+            </source>
+            <referredProperty xsi:type="ecore:EReference" href="http://example.org/airport#//BaggageClaim/belts"/>
+          </body>
+          <iterator xsi:type="ocl.ecore:Variable" name="temp36">
+            <eType xsi:type="ecore:EClass" href="http://example.org/airport#//BaggageClaim"/>
+          </iterator>
+        </body>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&lt;/p>&#xA;    &lt;h4>Customs: "/>
+        <body xsi:type="ocl.ecore:IteratorExp" name="collect" eType="/9/Sequence(Customs)">
+          <source xsi:type="ocl.ecore:IteratorExp" name="collect" eType="/9/Sequence(Arrival)">
+            <source xsi:type="ocl.ecore:PropertyCallExp" eType="/9/OrderedSet(Landside)">
+              <source xsi:type="ocl.ecore:VariableExp" name="aTerminal" referredVariable="/0/generateElement/aTerminal">
+                <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Terminal"/>
+              </source>
+              <referredProperty xsi:type="ecore:EReference" href="http://example.org/airport#//Terminal/landside"/>
+            </source>
+            <body xsi:type="ocl.ecore:PropertyCallExp">
+              <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Arrival"/>
+              <source xsi:type="ocl.ecore:VariableExp" name="temp1" referredVariable="/0/generateElement/%/collect.15/collect/temp37">
+                <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Landside"/>
+              </source>
+              <referredProperty xsi:type="ecore:EReference" href="http://example.org/airport#//Landside/arrivalArea"/>
+            </body>
+            <iterator xsi:type="ocl.ecore:Variable" name="temp37">
+              <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Landside"/>
+            </iterator>
+          </source>
+          <body xsi:type="ocl.ecore:PropertyCallExp">
+            <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Customs"/>
+            <source xsi:type="ocl.ecore:VariableExp" name="temp2" referredVariable="/0/generateElement/%/collect.15/temp38">
+              <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Arrival"/>
+            </source>
+            <referredProperty xsi:type="ecore:EReference" href="http://example.org/airport#//Arrival/customs"/>
+          </body>
+          <iterator xsi:type="ocl.ecore:Variable" name="temp38">
+            <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Arrival"/>
+          </iterator>
+        </body>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&lt;/h4>&#xA;&#xA;    &lt;h2>Flights&lt;/h2>&#xA;    &lt;table>&#xA;      &lt;tr>&#xA;        &lt;th>Name&lt;/th>&#xA;        &lt;th>Flight Number&lt;/th>&#xA;        &lt;th>Time&lt;/th>&#xA;        &lt;th>Type&lt;/th>&#xA;        &lt;th>City&lt;/th>&#xA;        &lt;th>International&lt;/th>&#xA;      &lt;/tr>&#xA;"/>
+        <body xsi:type="mtl:ForBlock">
+          <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="      &lt;tr>&#xA;        &lt;td>"/>
+          <body xsi:type="ocl.ecore:PropertyCallExp">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+            <source xsi:type="ocl.ecore:VariableExp" name="f" referredVariable="/0/generateElement/%/%.21/f">
+              <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Flight"/>
+            </source>
+            <referredProperty xsi:type="ecore:EAttribute" href="http://example.org/airport#//namedElement/name"/>
+          </body>
+          <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&lt;/td>&#xA;        &lt;td>"/>
+          <body xsi:type="ocl.ecore:PropertyCallExp">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+            <source xsi:type="ocl.ecore:VariableExp" name="f" referredVariable="/0/generateElement/%/%.21/f">
+              <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Flight"/>
+            </source>
+            <referredProperty xsi:type="ecore:EAttribute" href="http://example.org/airport#//Flight/flightNumber"/>
+          </body>
+          <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&lt;/td>&#xA;        &lt;td>"/>
+          <body xsi:type="ocl.ecore:PropertyCallExp">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+            <source xsi:type="ocl.ecore:VariableExp" name="f" referredVariable="/0/generateElement/%/%.21/f">
+              <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Flight"/>
+            </source>
+            <referredProperty xsi:type="ecore:EAttribute" href="http://example.org/airport#//Flight/time"/>
+          </body>
+          <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&lt;/td>&#xA;        &lt;td>"/>
+          <body xsi:type="ocl.ecore:PropertyCallExp">
+            <eType xsi:type="ecore:EEnum" href="http://example.org/airport#//FlightType"/>
+            <source xsi:type="ocl.ecore:VariableExp" name="f" referredVariable="/0/generateElement/%/%.21/f">
+              <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Flight"/>
+            </source>
+            <referredProperty xsi:type="ecore:EAttribute" href="http://example.org/airport#//Flight/type"/>
+          </body>
+          <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&lt;/td>&#xA;        &lt;td>"/>
+          <body xsi:type="ocl.ecore:PropertyCallExp">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+            <source xsi:type="ocl.ecore:VariableExp" name="f" referredVariable="/0/generateElement/%/%.21/f">
+              <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Flight"/>
+            </source>
+            <referredProperty xsi:type="ecore:EAttribute" href="http://example.org/airport#//Flight/city"/>
+          </body>
+          <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&lt;/td>&#xA;        &lt;td>"/>
+          <body xsi:type="ocl.ecore:PropertyCallExp">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+            <source xsi:type="ocl.ecore:VariableExp" name="f" referredVariable="/0/generateElement/%/%.21/f">
+              <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Flight"/>
+            </source>
+            <referredProperty xsi:type="ecore:EAttribute" href="http://example.org/airport#//Flight/isInternational"/>
+          </body>
+          <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&lt;/td>&#xA;      &lt;/tr>&#xA;"/>
+          <loopVariable name="f">
+            <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Flight"/>
+          </loopVariable>
+          <iterSet xsi:type="ocl.ecore:PropertyCallExp" eType="/9/OrderedSet(Flight)">
+            <source xsi:type="ocl.ecore:VariableExp" name="aTerminal" referredVariable="/0/generateElement/aTerminal">
+              <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Terminal"/>
+            </source>
+            <referredProperty xsi:type="ecore:EReference" href="http://example.org/airport#//Terminal/flights"/>
+          </iterSet>
+        </body>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="    &lt;/table>&#xA;&#xA;    &lt;h2>Parking Areas&lt;/h2>&#xA;    &lt;ul>&#xA;"/>
+        <body xsi:type="mtl:ForBlock">
+          <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="      &lt;li>Name: "/>
+          <body xsi:type="ocl.ecore:PropertyCallExp">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+            <source xsi:type="ocl.ecore:VariableExp" name="p" referredVariable="/0/generateElement/%/%.23/p">
+              <eType xsi:type="ecore:EClass" href="http://example.org/airport#//ParkingArea"/>
+            </source>
+            <referredProperty xsi:type="ecore:EAttribute" href="http://example.org/airport#//namedElement/name"/>
+          </body>
+          <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&lt;/li>&#xA;"/>
+          <loopVariable name="p">
+            <eType xsi:type="ecore:EClass" href="http://example.org/airport#//ParkingArea"/>
+          </loopVariable>
+          <iterSet xsi:type="ocl.ecore:PropertyCallExp" eType="/9/OrderedSet(ParkingArea)">
+            <source xsi:type="ocl.ecore:VariableExp" name="aTerminal" referredVariable="/0/generateElement/aTerminal">
+              <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Terminal"/>
+            </source>
+            <referredProperty xsi:type="ecore:EReference" href="http://example.org/airport#//Terminal/ParkingAreas"/>
+          </iterSet>
+        </body>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="    &lt;/ul>&#xA;&#xA;    &lt;h2>Transportation Services&lt;/h2>&#xA;    &lt;ul>&#xA;"/>
+        <body xsi:type="mtl:ForBlock">
+          <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="      &lt;li>Name: "/>
+          <body xsi:type="ocl.ecore:PropertyCallExp">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+            <source xsi:type="ocl.ecore:VariableExp" name="t" referredVariable="/0/generateElement/%/%.25/t">
+              <eType xsi:type="ecore:EClass" href="http://example.org/airport#//TransportationServices"/>
+            </source>
+            <referredProperty xsi:type="ecore:EAttribute" href="http://example.org/airport#//namedElement/name"/>
+          </body>
+          <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&lt;/li>&#xA;"/>
+          <loopVariable name="t">
+            <eType xsi:type="ecore:EClass" href="http://example.org/airport#//TransportationServices"/>
+          </loopVariable>
+          <iterSet xsi:type="ocl.ecore:PropertyCallExp" eType="/9/OrderedSet(TransportationServices)">
+            <source xsi:type="ocl.ecore:VariableExp" name="aTerminal" referredVariable="/0/generateElement/aTerminal">
+              <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Terminal"/>
+            </source>
+            <referredProperty xsi:type="ecore:EReference" href="http://example.org/airport#//Terminal/TransportationServices"/>
+          </iterSet>
+        </body>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="    &lt;/ul>&#xA;  &lt;/body>&#xA;&lt;/html>&#xA;"/>
+        <fileUrl xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="Terminal.html">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        </fileUrl>
+        <charset xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="UTF-8">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        </charset>
+      </body>
+      <parameter name="aTerminal">
+        <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Terminal"/>
+      </parameter>
+    </ownedModuleElement>
+  </mtl:Module>
+  <ecore:EPackage name="additions">
+    <eClassifiers xsi:type="ecore:EClass" name="oclstdlib_String_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="oclstdlib_Integer_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="oclstdlib_Real_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Real"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ecore_EObject_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+      </eAnnotations>
+      <eOperations name="generateElement">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL" references="/0/generateElement"/>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <eParameters name="aTerminal">
+          <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Terminal"/>
+        </eParameters>
+      </eOperations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="oclstdlib_OclAny_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="oclstdlib_Collection(T)_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Collection(T)"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="oclstdlib_Sequence(T)_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Sequence(T)"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="oclstdlib_OrderedSet(T)_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OrderedSet(T)"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="airport_Terminal_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://example.org/airport#//Terminal"/>
+      </eAnnotations>
+    </eClassifiers>
+  </ecore:EPackage>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Terminal"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Terminal"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Terminal"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Terminal"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Terminal"/>
+  </ocl.ecore:Variable>
+  <ecore:EPackage name="collections">
+    <eClassifiers xsi:type="ocl.ecore:OrderedSetType" name="OrderedSet(DropOff)" instanceClassName="java.util.LinkedHashSet">
+      <elementType xsi:type="ecore:EClass" href="http://example.org/airport#//DropOff"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ocl.ecore:SequenceType" name="Sequence(String)" instanceClassName="java.util.List">
+      <elementType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ocl.ecore:OrderedSetType" name="OrderedSet(Point)" instanceClassName="java.util.LinkedHashSet">
+      <elementType xsi:type="ecore:EClass" href="http://example.org/airport#//Point"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ocl.ecore:SequenceType" name="Sequence(Point)" instanceClassName="java.util.List">
+      <elementType xsi:type="ecore:EClass" href="http://example.org/airport#//Point"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ocl.ecore:SequenceType" name="Sequence(Integer)" instanceClassName="java.util.List">
+      <elementType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ocl.ecore:OrderedSetType" name="OrderedSet(Floor)" instanceClassName="java.util.LinkedHashSet">
+      <elementType xsi:type="ecore:EClass" href="http://example.org/airport#//Floor"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ocl.ecore:OrderedSetType" name="OrderedSet(Airside)" instanceClassName="java.util.LinkedHashSet">
+      <elementType xsi:type="ecore:EClass" href="http://example.org/airport#//Airside"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ocl.ecore:SequenceType" name="Sequence(Floor)" instanceClassName="java.util.List">
+      <elementType xsi:type="ecore:EClass" href="http://example.org/airport#//Floor"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ocl.ecore:OrderedSetType" name="OrderedSet(GateArea)" instanceClassName="java.util.LinkedHashSet">
+      <elementType xsi:type="ecore:EClass" href="http://example.org/airport#//GateArea"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ocl.ecore:SequenceType" name="Sequence(GateArea)" instanceClassName="java.util.List">
+      <elementType xsi:type="ecore:EClass" href="http://example.org/airport#//GateArea"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ocl.ecore:OrderedSetType" name="OrderedSet(Gate)" instanceClassName="java.util.LinkedHashSet">
+      <elementType xsi:type="ecore:EClass" href="http://example.org/airport#//Gate"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ocl.ecore:SequenceType" name="Sequence(Gate)" instanceClassName="java.util.List">
+      <elementType xsi:type="ecore:EClass" href="http://example.org/airport#//Gate"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ocl.ecore:SequenceType" name="Sequence(Flight)" instanceClassName="java.util.List">
+      <elementType xsi:type="ecore:EClass" href="http://example.org/airport#//Flight"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ocl.ecore:OrderedSetType" name="OrderedSet(Landside)" instanceClassName="java.util.LinkedHashSet">
+      <elementType xsi:type="ecore:EClass" href="http://example.org/airport#//Landside"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ocl.ecore:SequenceType" name="Sequence(Departure)" instanceClassName="java.util.List">
+      <elementType xsi:type="ecore:EClass" href="http://example.org/airport#//Departure"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ocl.ecore:OrderedSetType" name="OrderedSet(BaggageDropOff)" instanceClassName="java.util.LinkedHashSet">
+      <elementType xsi:type="ecore:EClass" href="http://example.org/airport#//BaggageDropOff"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ocl.ecore:SequenceType" name="Sequence(BaggageDropOff)" instanceClassName="java.util.List">
+      <elementType xsi:type="ecore:EClass" href="http://example.org/airport#//BaggageDropOff"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ocl.ecore:OrderedSetType" name="OrderedSet(Counter)" instanceClassName="java.util.LinkedHashSet">
+      <elementType xsi:type="ecore:EClass" href="http://example.org/airport#//Counter"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ocl.ecore:SequenceType" name="Sequence(Counter)" instanceClassName="java.util.List">
+      <elementType xsi:type="ecore:EClass" href="http://example.org/airport#//Counter"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ocl.ecore:SequenceType" name="Sequence(Arrival)" instanceClassName="java.util.List">
+      <elementType xsi:type="ecore:EClass" href="http://example.org/airport#//Arrival"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ocl.ecore:OrderedSetType" name="OrderedSet(BaggageClaim)" instanceClassName="java.util.LinkedHashSet">
+      <elementType xsi:type="ecore:EClass" href="http://example.org/airport#//BaggageClaim"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ocl.ecore:SequenceType" name="Sequence(BaggageClaim)" instanceClassName="java.util.List">
+      <elementType xsi:type="ecore:EClass" href="http://example.org/airport#//BaggageClaim"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ocl.ecore:OrderedSetType" name="OrderedSet(Belt)" instanceClassName="java.util.LinkedHashSet">
+      <elementType xsi:type="ecore:EClass" href="http://example.org/airport#//Belt"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ocl.ecore:SequenceType" name="Sequence(Belt)" instanceClassName="java.util.List">
+      <elementType xsi:type="ecore:EClass" href="http://example.org/airport#//Belt"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ocl.ecore:SequenceType" name="Sequence(Customs)" instanceClassName="java.util.List">
+      <elementType xsi:type="ecore:EClass" href="http://example.org/airport#//Customs"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ocl.ecore:OrderedSetType" name="OrderedSet(Flight)" instanceClassName="java.util.LinkedHashSet">
+      <elementType xsi:type="ecore:EClass" href="http://example.org/airport#//Flight"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ocl.ecore:OrderedSetType" name="OrderedSet(ParkingArea)" instanceClassName="java.util.LinkedHashSet">
+      <elementType xsi:type="ecore:EClass" href="http://example.org/airport#//ParkingArea"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ocl.ecore:OrderedSetType" name="OrderedSet(TransportationServices)" instanceClassName="java.util.LinkedHashSet">
+      <elementType xsi:type="ecore:EClass" href="http://example.org/airport#//TransportationServices"/>
+    </eClassifiers>
+  </ecore:EPackage>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Terminal"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Terminal"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Terminal"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Floor"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Floor"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Terminal"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="i">
+    <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Terminal"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Terminal"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Terminal"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Terminal"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Terminal"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Terminal"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Terminal"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Terminal"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Terminal"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Terminal"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Terminal"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Terminal"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Terminal"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Terminal"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Terminal"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Flight"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Flight"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Flight"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Flight"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Flight"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Flight"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Flight"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Terminal"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="i">
+    <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Terminal"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://example.org/airport#//ParkingArea"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://example.org/airport#//ParkingArea"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Terminal"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="i">
+    <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Terminal"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://example.org/airport#//TransportationServices"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://example.org/airport#//TransportationServices"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://example.org/airport#//Terminal"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="i">
+    <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+  </ocl.ecore:Variable>
+  <ecore:EAnnotation source="positions">
+    <eAnnotations source="positions.0" references="/0/generateElement">
+      <details key="start" value="78"/>
+      <details key="end" value="2663"/>
+      <details key="line" value="4"/>
+    </eAnnotations>
+    <eAnnotations source="positions.1" references="/0/generateElement/%">
+      <details key="start" value="151"/>
+      <details key="end" value="2651"/>
+      <details key="line" value="6"/>
+    </eAnnotations>
+    <eAnnotations source="positions.2" references="/0/generateElement/%/%">
+      <details key="start" value="192"/>
+      <details key="end" value="429"/>
+      <details key="line" value="7"/>
+    </eAnnotations>
+    <eAnnotations source="positions.3" references="/0/generateElement/%/%.1">
+      <details key="start" value="430"/>
+      <details key="end" value="444"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.4" references="/0/generateElement/%/%.1/aTerminal">
+      <details key="start" value="430"/>
+      <details key="end" value="439"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.5" references="/0/generateElement/%/%.2">
+      <details key="start" value="446"/>
+      <details key="end" value="488"/>
+      <details key="line" value="22"/>
+    </eAnnotations>
+    <eAnnotations source="positions.6" references="/0/generateElement/%/collect">
+      <details key="start" value="489"/>
+      <details key="end" value="511"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.7" references="/0/generateElement/%/collect/%">
+      <details key="start" value="489"/>
+      <details key="end" value="506"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.8" references="/0/generateElement/%/collect/%/aTerminal">
+      <details key="start" value="489"/>
+      <details key="end" value="498"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.9" references="/0/generateElement/%/collect/%.1">
+      <details key="start" value="507"/>
+      <details key="end" value="511"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.10" references="/0/generateElement/%/collect/%.1/temp1">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.11" references="/0/generateElement/%/collect/temp1">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.12" references="/0/generateElement/%/%.3">
+      <details key="start" value="513"/>
+      <details key="end" value="540"/>
+      <details key="line" value="25"/>
+    </eAnnotations>
+    <eAnnotations source="positions.13" references="/0/generateElement/%/collect.1">
+      <details key="start" value="541"/>
+      <details key="end" value="572"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.14" references="/0/generateElement/%/collect.1/collect">
+      <details key="start" value="541"/>
+      <details key="end" value="570"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.15" references="/0/generateElement/%/collect.1/collect/%">
+      <details key="start" value="541"/>
+      <details key="end" value="558"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.16" references="/0/generateElement/%/collect.1/collect/%/aTerminal">
+      <details key="start" value="541"/>
+      <details key="end" value="550"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.17" references="/0/generateElement/%/collect.1/collect/%.1">
+      <details key="start" value="559"/>
+      <details key="end" value="570"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.18" references="/0/generateElement/%/collect.1/collect/%.1/temp1">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.19" references="/0/generateElement/%/collect.1/collect/temp2">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.20" references="/0/generateElement/%/collect.1/%">
+      <details key="start" value="571"/>
+      <details key="end" value="572"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.21" references="/0/generateElement/%/collect.1/%/temp2">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.22" references="/0/generateElement/%/collect.1/temp3">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.23" references="/0/generateElement/%/%.4">
+      <details key="start" value="574"/>
+      <details key="end" value="609"/>
+      <details key="line" value="26"/>
+    </eAnnotations>
+    <eAnnotations source="positions.24" references="/0/generateElement/%/%.5">
+      <details key="start" value="615"/>
+      <details key="end" value="689"/>
+      <details key="line" value="30"/>
+    </eAnnotations>
+    <eAnnotations source="positions.25" references="/0/generateElement/%/%.5/%">
+      <details key="start" value="652"/>
+      <details key="end" value="662"/>
+      <details key="line" value="31"/>
+    </eAnnotations>
+    <eAnnotations source="positions.26" references="/0/generateElement/%/%.5/%.1">
+      <details key="start" value="663"/>
+      <details key="end" value="669"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.27" references="/0/generateElement/%/%.5/%.1/f">
+      <details key="start" value="663"/>
+      <details key="end" value="664"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.28" references="/0/generateElement/%/%.5/%.2">
+      <details key="start" value="671"/>
+      <details key="end" value="677"/>
+      <details key="line" value="31"/>
+    </eAnnotations>
+    <eAnnotations source="positions.29" references="/0/generateElement/%/%.5/f">
+      <details key="start" value="621"/>
+      <details key="end" value="630"/>
+      <details key="line" value="30"/>
+    </eAnnotations>
+    <eAnnotations source="positions.30" references="/0/generateElement/%/%.5/%.3">
+      <details key="start" value="633"/>
+      <details key="end" value="649"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.31" references="/0/generateElement/%/%.5/%.3/aTerminal">
+      <details key="start" value="633"/>
+      <details key="end" value="642"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.32" references="/0/generateElement/%/%.6">
+      <details key="start" value="690"/>
+      <details key="end" value="736"/>
+      <details key="line" value="33"/>
+    </eAnnotations>
+    <eAnnotations source="positions.33" references="/0/generateElement/%/collect.2">
+      <details key="start" value="737"/>
+      <details key="end" value="765"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.34" references="/0/generateElement/%/collect.2/collect">
+      <details key="start" value="737"/>
+      <details key="end" value="760"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.35" references="/0/generateElement/%/collect.2/collect/%">
+      <details key="start" value="737"/>
+      <details key="end" value="754"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.36" references="/0/generateElement/%/collect.2/collect/%/aTerminal">
+      <details key="start" value="737"/>
+      <details key="end" value="746"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.37" references="/0/generateElement/%/collect.2/collect/%.1">
+      <details key="start" value="755"/>
+      <details key="end" value="760"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.38" references="/0/generateElement/%/collect.2/collect/%.1/temp1">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.39" references="/0/generateElement/%/collect.2/collect/temp4">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.40" references="/0/generateElement/%/collect.2/%">
+      <details key="start" value="761"/>
+      <details key="end" value="765"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.41" references="/0/generateElement/%/collect.2/%/temp2">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.42" references="/0/generateElement/%/collect.2/temp5">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.43" references="/0/generateElement/%/%.7">
+      <details key="start" value="767"/>
+      <details key="end" value="808"/>
+      <details key="line" value="36"/>
+    </eAnnotations>
+    <eAnnotations source="positions.44" references="/0/generateElement/%/collect.3">
+      <details key="start" value="809"/>
+      <details key="end" value="840"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.45" references="/0/generateElement/%/collect.3/collect">
+      <details key="start" value="809"/>
+      <details key="end" value="835"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.46" references="/0/generateElement/%/collect.3/collect/%">
+      <details key="start" value="809"/>
+      <details key="end" value="826"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.47" references="/0/generateElement/%/collect.3/collect/%/aTerminal">
+      <details key="start" value="809"/>
+      <details key="end" value="818"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.48" references="/0/generateElement/%/collect.3/collect/%.1">
+      <details key="start" value="827"/>
+      <details key="end" value="835"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.49" references="/0/generateElement/%/collect.3/collect/%.1/temp1">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.50" references="/0/generateElement/%/collect.3/collect/temp6">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.51" references="/0/generateElement/%/collect.3/%">
+      <details key="start" value="836"/>
+      <details key="end" value="840"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.52" references="/0/generateElement/%/collect.3/%/temp2">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.53" references="/0/generateElement/%/collect.3/temp7">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.54" references="/0/generateElement/%/%.8">
+      <details key="start" value="842"/>
+      <details key="end" value="867"/>
+      <details key="line" value="38"/>
+    </eAnnotations>
+    <eAnnotations source="positions.55" references="/0/generateElement/%/collect.4">
+      <details key="start" value="868"/>
+      <details key="end" value="905"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.56" references="/0/generateElement/%/collect.4/collect">
+      <details key="start" value="868"/>
+      <details key="end" value="894"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.57" references="/0/generateElement/%/collect.4/collect/%">
+      <details key="start" value="868"/>
+      <details key="end" value="885"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.58" references="/0/generateElement/%/collect.4/collect/%/aTerminal">
+      <details key="start" value="868"/>
+      <details key="end" value="877"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.59" references="/0/generateElement/%/collect.4/collect/%.1">
+      <details key="start" value="886"/>
+      <details key="end" value="894"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.60" references="/0/generateElement/%/collect.4/collect/%.1/temp1">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.61" references="/0/generateElement/%/collect.4/collect/temp8">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.62" references="/0/generateElement/%/collect.4/%">
+      <details key="start" value="895"/>
+      <details key="end" value="905"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.63" references="/0/generateElement/%/collect.4/%/temp2">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.64" references="/0/generateElement/%/collect.4/temp9">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.65" references="/0/generateElement/%/%.9">
+      <details key="start" value="907"/>
+      <details key="end" value="934"/>
+      <details key="line" value="39"/>
+    </eAnnotations>
+    <eAnnotations source="positions.66" references="/0/generateElement/%/collect.5">
+      <details key="start" value="935"/>
+      <details key="end" value="975"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.67" references="/0/generateElement/%/collect.5/collect">
+      <details key="start" value="935"/>
+      <details key="end" value="973"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.68" references="/0/generateElement/%/collect.5/collect/collect">
+      <details key="start" value="935"/>
+      <details key="end" value="961"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.69" references="/0/generateElement/%/collect.5/collect/collect/%">
+      <details key="start" value="935"/>
+      <details key="end" value="952"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.70" references="/0/generateElement/%/collect.5/collect/collect/%/aTerminal">
+      <details key="start" value="935"/>
+      <details key="end" value="944"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.71" references="/0/generateElement/%/collect.5/collect/collect/%.1">
+      <details key="start" value="953"/>
+      <details key="end" value="961"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.72" references="/0/generateElement/%/collect.5/collect/collect/%.1/temp1">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.73" references="/0/generateElement/%/collect.5/collect/collect/temp10">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.74" references="/0/generateElement/%/collect.5/collect/%">
+      <details key="start" value="962"/>
+      <details key="end" value="973"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.75" references="/0/generateElement/%/collect.5/collect/%/temp2">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.76" references="/0/generateElement/%/collect.5/collect/temp11">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.77" references="/0/generateElement/%/collect.5/%">
+      <details key="start" value="974"/>
+      <details key="end" value="975"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.78" references="/0/generateElement/%/collect.5/%/temp3">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.79" references="/0/generateElement/%/collect.5/temp12">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.80" references="/0/generateElement/%/%.10">
+      <details key="start" value="977"/>
+      <details key="end" value="1012"/>
+      <details key="line" value="40"/>
+    </eAnnotations>
+    <eAnnotations source="positions.81" references="/0/generateElement/%/collect.6">
+      <details key="start" value="1013"/>
+      <details key="end" value="1050"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.82" references="/0/generateElement/%/collect.6/collect">
+      <details key="start" value="1013"/>
+      <details key="end" value="1045"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.83" references="/0/generateElement/%/collect.6/collect/collect">
+      <details key="start" value="1013"/>
+      <details key="end" value="1039"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.84" references="/0/generateElement/%/collect.6/collect/collect/%">
+      <details key="start" value="1013"/>
+      <details key="end" value="1030"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.85" references="/0/generateElement/%/collect.6/collect/collect/%/aTerminal">
+      <details key="start" value="1013"/>
+      <details key="end" value="1022"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.86" references="/0/generateElement/%/collect.6/collect/collect/%.1">
+      <details key="start" value="1031"/>
+      <details key="end" value="1039"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.87" references="/0/generateElement/%/collect.6/collect/collect/%.1/temp1">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.88" references="/0/generateElement/%/collect.6/collect/collect/temp13">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.89" references="/0/generateElement/%/collect.6/collect/%">
+      <details key="start" value="1040"/>
+      <details key="end" value="1045"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.90" references="/0/generateElement/%/collect.6/collect/%/temp2">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.91" references="/0/generateElement/%/collect.6/collect/temp14">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.92" references="/0/generateElement/%/collect.6/%">
+      <details key="start" value="1046"/>
+      <details key="end" value="1050"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.93" references="/0/generateElement/%/collect.6/%/temp3">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.94" references="/0/generateElement/%/collect.6/temp15">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.95" references="/0/generateElement/%/%.11">
+      <details key="start" value="1052"/>
+      <details key="end" value="1076"/>
+      <details key="line" value="42"/>
+    </eAnnotations>
+    <eAnnotations source="positions.96" references="/0/generateElement/%/collect.7">
+      <details key="start" value="1077"/>
+      <details key="end" value="1116"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.97" references="/0/generateElement/%/collect.7/collect">
+      <details key="start" value="1077"/>
+      <details key="end" value="1109"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.98" references="/0/generateElement/%/collect.7/collect/collect">
+      <details key="start" value="1077"/>
+      <details key="end" value="1103"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.99" references="/0/generateElement/%/collect.7/collect/collect/%">
+      <details key="start" value="1077"/>
+      <details key="end" value="1094"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.100" references="/0/generateElement/%/collect.7/collect/collect/%/aTerminal">
+      <details key="start" value="1077"/>
+      <details key="end" value="1086"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.101" references="/0/generateElement/%/collect.7/collect/collect/%.1">
+      <details key="start" value="1095"/>
+      <details key="end" value="1103"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.102" references="/0/generateElement/%/collect.7/collect/collect/%.1/temp1">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.103" references="/0/generateElement/%/collect.7/collect/collect/temp16">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.104" references="/0/generateElement/%/collect.7/collect/%">
+      <details key="start" value="1104"/>
+      <details key="end" value="1109"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.105" references="/0/generateElement/%/collect.7/collect/%/temp2">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.106" references="/0/generateElement/%/collect.7/collect/temp17">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.107" references="/0/generateElement/%/collect.7/%">
+      <details key="start" value="1110"/>
+      <details key="end" value="1116"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.108" references="/0/generateElement/%/collect.7/%/temp3">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.109" references="/0/generateElement/%/collect.7/temp18">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.110" references="/0/generateElement/%/%.12">
+      <details key="start" value="1118"/>
+      <details key="end" value="1171"/>
+      <details key="line" value="43"/>
+    </eAnnotations>
+    <eAnnotations source="positions.111" references="/0/generateElement/%/collect.8">
+      <details key="start" value="1172"/>
+      <details key="end" value="1201"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.112" references="/0/generateElement/%/collect.8/collect">
+      <details key="start" value="1172"/>
+      <details key="end" value="1196"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.113" references="/0/generateElement/%/collect.8/collect/%">
+      <details key="start" value="1172"/>
+      <details key="end" value="1190"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.114" references="/0/generateElement/%/collect.8/collect/%/aTerminal">
+      <details key="start" value="1172"/>
+      <details key="end" value="1181"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.115" references="/0/generateElement/%/collect.8/collect/%.1">
+      <details key="start" value="1191"/>
+      <details key="end" value="1196"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.116" references="/0/generateElement/%/collect.8/collect/%.1/temp1">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.117" references="/0/generateElement/%/collect.8/collect/temp19">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.118" references="/0/generateElement/%/collect.8/%">
+      <details key="start" value="1197"/>
+      <details key="end" value="1201"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.119" references="/0/generateElement/%/collect.8/%/temp2">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.120" references="/0/generateElement/%/collect.8/temp20">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.121" references="/0/generateElement/%/%.13">
+      <details key="start" value="1203"/>
+      <details key="end" value="1249"/>
+      <details key="line" value="47"/>
+    </eAnnotations>
+    <eAnnotations source="positions.122" references="/0/generateElement/%/collect.9">
+      <details key="start" value="1250"/>
+      <details key="end" value="1287"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.123" references="/0/generateElement/%/collect.9/collect">
+      <details key="start" value="1250"/>
+      <details key="end" value="1282"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.124" references="/0/generateElement/%/collect.9/collect/%">
+      <details key="start" value="1250"/>
+      <details key="end" value="1268"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.125" references="/0/generateElement/%/collect.9/collect/%/aTerminal">
+      <details key="start" value="1250"/>
+      <details key="end" value="1259"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.126" references="/0/generateElement/%/collect.9/collect/%.1">
+      <details key="start" value="1269"/>
+      <details key="end" value="1282"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.127" references="/0/generateElement/%/collect.9/collect/%.1/temp1">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.128" references="/0/generateElement/%/collect.9/collect/temp21">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.129" references="/0/generateElement/%/collect.9/%">
+      <details key="start" value="1283"/>
+      <details key="end" value="1287"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.130" references="/0/generateElement/%/collect.9/%/temp2">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.131" references="/0/generateElement/%/collect.9/temp22">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.132" references="/0/generateElement/%/%.14">
+      <details key="start" value="1289"/>
+      <details key="end" value="1345"/>
+      <details key="line" value="49"/>
+    </eAnnotations>
+    <eAnnotations source="positions.133" references="/0/generateElement/%/collect.10">
+      <details key="start" value="1346"/>
+      <details key="end" value="1405"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.134" references="/0/generateElement/%/collect.10/collect">
+      <details key="start" value="1346"/>
+      <details key="end" value="1393"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.135" references="/0/generateElement/%/collect.10/collect/collect">
+      <details key="start" value="1346"/>
+      <details key="end" value="1378"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.136" references="/0/generateElement/%/collect.10/collect/collect/%">
+      <details key="start" value="1346"/>
+      <details key="end" value="1364"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.137" references="/0/generateElement/%/collect.10/collect/collect/%/aTerminal">
+      <details key="start" value="1346"/>
+      <details key="end" value="1355"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.138" references="/0/generateElement/%/collect.10/collect/collect/%.1">
+      <details key="start" value="1365"/>
+      <details key="end" value="1378"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.139" references="/0/generateElement/%/collect.10/collect/collect/%.1/temp1">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.140" references="/0/generateElement/%/collect.10/collect/collect/temp23">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.141" references="/0/generateElement/%/collect.10/collect/%">
+      <details key="start" value="1379"/>
+      <details key="end" value="1393"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.142" references="/0/generateElement/%/collect.10/collect/%/temp2">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.143" references="/0/generateElement/%/collect.10/collect/temp24">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.144" references="/0/generateElement/%/collect.10/%">
+      <details key="start" value="1394"/>
+      <details key="end" value="1405"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.145" references="/0/generateElement/%/collect.10/%/temp3">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.146" references="/0/generateElement/%/collect.10/temp25">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.147" references="/0/generateElement/%/%.15">
+      <details key="start" value="1407"/>
+      <details key="end" value="1429"/>
+      <details key="line" value="51"/>
+    </eAnnotations>
+    <eAnnotations source="positions.148" references="/0/generateElement/%/collect.11">
+      <details key="start" value="1430"/>
+      <details key="end" value="1486"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.149" references="/0/generateElement/%/collect.11/collect">
+      <details key="start" value="1430"/>
+      <details key="end" value="1477"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.150" references="/0/generateElement/%/collect.11/collect/collect">
+      <details key="start" value="1430"/>
+      <details key="end" value="1462"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.151" references="/0/generateElement/%/collect.11/collect/collect/%">
+      <details key="start" value="1430"/>
+      <details key="end" value="1448"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.152" references="/0/generateElement/%/collect.11/collect/collect/%/aTerminal">
+      <details key="start" value="1430"/>
+      <details key="end" value="1439"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.153" references="/0/generateElement/%/collect.11/collect/collect/%.1">
+      <details key="start" value="1449"/>
+      <details key="end" value="1462"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.154" references="/0/generateElement/%/collect.11/collect/collect/%.1/temp1">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.155" references="/0/generateElement/%/collect.11/collect/collect/temp26">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.156" references="/0/generateElement/%/collect.11/collect/%">
+      <details key="start" value="1463"/>
+      <details key="end" value="1477"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.157" references="/0/generateElement/%/collect.11/collect/%/temp2">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.158" references="/0/generateElement/%/collect.11/collect/temp27">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.159" references="/0/generateElement/%/collect.11/%">
+      <details key="start" value="1478"/>
+      <details key="end" value="1486"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.160" references="/0/generateElement/%/collect.11/%/temp3">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.161" references="/0/generateElement/%/collect.11/temp28">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.162" references="/0/generateElement/%/%.16">
+      <details key="start" value="1488"/>
+      <details key="end" value="1532"/>
+      <details key="line" value="52"/>
+    </eAnnotations>
+    <eAnnotations source="positions.163" references="/0/generateElement/%/collect.12">
+      <details key="start" value="1533"/>
+      <details key="end" value="1568"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.164" references="/0/generateElement/%/collect.12/collect">
+      <details key="start" value="1533"/>
+      <details key="end" value="1563"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.165" references="/0/generateElement/%/collect.12/collect/%">
+      <details key="start" value="1533"/>
+      <details key="end" value="1551"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.166" references="/0/generateElement/%/collect.12/collect/%/aTerminal">
+      <details key="start" value="1533"/>
+      <details key="end" value="1542"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.167" references="/0/generateElement/%/collect.12/collect/%.1">
+      <details key="start" value="1552"/>
+      <details key="end" value="1563"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.168" references="/0/generateElement/%/collect.12/collect/%.1/temp1">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.169" references="/0/generateElement/%/collect.12/collect/temp29">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.170" references="/0/generateElement/%/collect.12/%">
+      <details key="start" value="1564"/>
+      <details key="end" value="1568"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.171" references="/0/generateElement/%/collect.12/%/temp2">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.172" references="/0/generateElement/%/collect.12/temp30">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.173" references="/0/generateElement/%/%.17">
+      <details key="start" value="1570"/>
+      <details key="end" value="1623"/>
+      <details key="line" value="54"/>
+    </eAnnotations>
+    <eAnnotations source="positions.174" references="/0/generateElement/%/collect.13">
+      <details key="start" value="1624"/>
+      <details key="end" value="1679"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.175" references="/0/generateElement/%/collect.13/collect">
+      <details key="start" value="1624"/>
+      <details key="end" value="1667"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.176" references="/0/generateElement/%/collect.13/collect/collect">
+      <details key="start" value="1624"/>
+      <details key="end" value="1654"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.177" references="/0/generateElement/%/collect.13/collect/collect/%">
+      <details key="start" value="1624"/>
+      <details key="end" value="1642"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.178" references="/0/generateElement/%/collect.13/collect/collect/%/aTerminal">
+      <details key="start" value="1624"/>
+      <details key="end" value="1633"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.179" references="/0/generateElement/%/collect.13/collect/collect/%.1">
+      <details key="start" value="1643"/>
+      <details key="end" value="1654"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.180" references="/0/generateElement/%/collect.13/collect/collect/%.1/temp1">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.181" references="/0/generateElement/%/collect.13/collect/collect/temp31">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.182" references="/0/generateElement/%/collect.13/collect/%">
+      <details key="start" value="1655"/>
+      <details key="end" value="1667"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.183" references="/0/generateElement/%/collect.13/collect/%/temp2">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.184" references="/0/generateElement/%/collect.13/collect/temp32">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.185" references="/0/generateElement/%/collect.13/%">
+      <details key="start" value="1668"/>
+      <details key="end" value="1679"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.186" references="/0/generateElement/%/collect.13/%/temp3">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.187" references="/0/generateElement/%/collect.13/temp33">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.188" references="/0/generateElement/%/%.18">
+      <details key="start" value="1681"/>
+      <details key="end" value="1700"/>
+      <details key="line" value="56"/>
+    </eAnnotations>
+    <eAnnotations source="positions.189" references="/0/generateElement/%/collect.14">
+      <details key="start" value="1701"/>
+      <details key="end" value="1750"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.190" references="/0/generateElement/%/collect.14/collect">
+      <details key="start" value="1701"/>
+      <details key="end" value="1744"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.191" references="/0/generateElement/%/collect.14/collect/collect">
+      <details key="start" value="1701"/>
+      <details key="end" value="1731"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.192" references="/0/generateElement/%/collect.14/collect/collect/%">
+      <details key="start" value="1701"/>
+      <details key="end" value="1719"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.193" references="/0/generateElement/%/collect.14/collect/collect/%/aTerminal">
+      <details key="start" value="1701"/>
+      <details key="end" value="1710"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.194" references="/0/generateElement/%/collect.14/collect/collect/%.1">
+      <details key="start" value="1720"/>
+      <details key="end" value="1731"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.195" references="/0/generateElement/%/collect.14/collect/collect/%.1/temp1">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.196" references="/0/generateElement/%/collect.14/collect/collect/temp34">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.197" references="/0/generateElement/%/collect.14/collect/%">
+      <details key="start" value="1732"/>
+      <details key="end" value="1744"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.198" references="/0/generateElement/%/collect.14/collect/%/temp2">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.199" references="/0/generateElement/%/collect.14/collect/temp35">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.200" references="/0/generateElement/%/collect.14/%">
+      <details key="start" value="1745"/>
+      <details key="end" value="1750"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.201" references="/0/generateElement/%/collect.14/%/temp3">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.202" references="/0/generateElement/%/collect.14/temp36">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.203" references="/0/generateElement/%/%.19">
+      <details key="start" value="1752"/>
+      <details key="end" value="1774"/>
+      <details key="line" value="57"/>
+    </eAnnotations>
+    <eAnnotations source="positions.204" references="/0/generateElement/%/collect.15">
+      <details key="start" value="1775"/>
+      <details key="end" value="1813"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.205" references="/0/generateElement/%/collect.15/collect">
+      <details key="start" value="1775"/>
+      <details key="end" value="1805"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.206" references="/0/generateElement/%/collect.15/collect/%">
+      <details key="start" value="1775"/>
+      <details key="end" value="1793"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.207" references="/0/generateElement/%/collect.15/collect/%/aTerminal">
+      <details key="start" value="1775"/>
+      <details key="end" value="1784"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.208" references="/0/generateElement/%/collect.15/collect/%.1">
+      <details key="start" value="1794"/>
+      <details key="end" value="1805"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.209" references="/0/generateElement/%/collect.15/collect/%.1/temp1">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.210" references="/0/generateElement/%/collect.15/collect/temp37">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.211" references="/0/generateElement/%/collect.15/%">
+      <details key="start" value="1806"/>
+      <details key="end" value="1813"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.212" references="/0/generateElement/%/collect.15/%/temp2">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.213" references="/0/generateElement/%/collect.15/temp38">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.214" references="/0/generateElement/%/%.20">
+      <details key="start" value="1815"/>
+      <details key="end" value="2028"/>
+      <details key="line" value="58"/>
+    </eAnnotations>
+    <eAnnotations source="positions.215" references="/0/generateElement/%/%.21">
+      <details key="start" value="2034"/>
+      <details key="end" value="2289"/>
+      <details key="line" value="70"/>
+    </eAnnotations>
+    <eAnnotations source="positions.216" references="/0/generateElement/%/%.21/%">
+      <details key="start" value="2073"/>
+      <details key="end" value="2096"/>
+      <details key="line" value="71"/>
+    </eAnnotations>
+    <eAnnotations source="positions.217" references="/0/generateElement/%/%.21/%.1">
+      <details key="start" value="2097"/>
+      <details key="end" value="2103"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.218" references="/0/generateElement/%/%.21/%.1/f">
+      <details key="start" value="2097"/>
+      <details key="end" value="2098"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.219" references="/0/generateElement/%/%.21/%.2">
+      <details key="start" value="2105"/>
+      <details key="end" value="2123"/>
+      <details key="line" value="72"/>
+    </eAnnotations>
+    <eAnnotations source="positions.220" references="/0/generateElement/%/%.21/%.3">
+      <details key="start" value="2124"/>
+      <details key="end" value="2138"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.221" references="/0/generateElement/%/%.21/%.3/f">
+      <details key="start" value="2124"/>
+      <details key="end" value="2125"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.222" references="/0/generateElement/%/%.21/%.4">
+      <details key="start" value="2140"/>
+      <details key="end" value="2158"/>
+      <details key="line" value="73"/>
+    </eAnnotations>
+    <eAnnotations source="positions.223" references="/0/generateElement/%/%.21/%.5">
+      <details key="start" value="2159"/>
+      <details key="end" value="2165"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.224" references="/0/generateElement/%/%.21/%.5/f">
+      <details key="start" value="2159"/>
+      <details key="end" value="2160"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.225" references="/0/generateElement/%/%.21/%.6">
+      <details key="start" value="2167"/>
+      <details key="end" value="2185"/>
+      <details key="line" value="74"/>
+    </eAnnotations>
+    <eAnnotations source="positions.226" references="/0/generateElement/%/%.21/%.7">
+      <details key="start" value="2186"/>
+      <details key="end" value="2192"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.227" references="/0/generateElement/%/%.21/%.7/f">
+      <details key="start" value="2186"/>
+      <details key="end" value="2187"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.228" references="/0/generateElement/%/%.21/%.8">
+      <details key="start" value="2194"/>
+      <details key="end" value="2212"/>
+      <details key="line" value="75"/>
+    </eAnnotations>
+    <eAnnotations source="positions.229" references="/0/generateElement/%/%.21/%.9">
+      <details key="start" value="2213"/>
+      <details key="end" value="2219"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.230" references="/0/generateElement/%/%.21/%.9/f">
+      <details key="start" value="2213"/>
+      <details key="end" value="2214"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.231" references="/0/generateElement/%/%.21/%.10">
+      <details key="start" value="2221"/>
+      <details key="end" value="2239"/>
+      <details key="line" value="76"/>
+    </eAnnotations>
+    <eAnnotations source="positions.232" references="/0/generateElement/%/%.21/%.11">
+      <details key="start" value="2240"/>
+      <details key="end" value="2257"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.233" references="/0/generateElement/%/%.21/%.11/f">
+      <details key="start" value="2240"/>
+      <details key="end" value="2241"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.234" references="/0/generateElement/%/%.21/%.12">
+      <details key="start" value="2259"/>
+      <details key="end" value="2277"/>
+      <details key="line" value="77"/>
+    </eAnnotations>
+    <eAnnotations source="positions.235" references="/0/generateElement/%/%.21/f">
+      <details key="start" value="2040"/>
+      <details key="end" value="2050"/>
+      <details key="line" value="70"/>
+    </eAnnotations>
+    <eAnnotations source="positions.236" references="/0/generateElement/%/%.21/%.13">
+      <details key="start" value="2053"/>
+      <details key="end" value="2070"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.237" references="/0/generateElement/%/%.21/%.13/aTerminal">
+      <details key="start" value="2053"/>
+      <details key="end" value="2062"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.238" references="/0/generateElement/%/%.22">
+      <details key="start" value="2290"/>
+      <details key="end" value="2340"/>
+      <details key="line" value="80"/>
+    </eAnnotations>
+    <eAnnotations source="positions.239" references="/0/generateElement/%/%.23">
+      <details key="start" value="2346"/>
+      <details key="end" value="2438"/>
+      <details key="line" value="84"/>
+    </eAnnotations>
+    <eAnnotations source="positions.240" references="/0/generateElement/%/%.23/%">
+      <details key="start" value="2395"/>
+      <details key="end" value="2411"/>
+      <details key="line" value="85"/>
+    </eAnnotations>
+    <eAnnotations source="positions.241" references="/0/generateElement/%/%.23/%.1">
+      <details key="start" value="2412"/>
+      <details key="end" value="2418"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.242" references="/0/generateElement/%/%.23/%.1/p">
+      <details key="start" value="2412"/>
+      <details key="end" value="2413"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.243" references="/0/generateElement/%/%.23/%.2">
+      <details key="start" value="2420"/>
+      <details key="end" value="2426"/>
+      <details key="line" value="85"/>
+    </eAnnotations>
+    <eAnnotations source="positions.244" references="/0/generateElement/%/%.23/p">
+      <details key="start" value="2352"/>
+      <details key="end" value="2367"/>
+      <details key="line" value="84"/>
+    </eAnnotations>
+    <eAnnotations source="positions.245" references="/0/generateElement/%/%.23/%.3">
+      <details key="start" value="2370"/>
+      <details key="end" value="2392"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.246" references="/0/generateElement/%/%.23/%.3/aTerminal">
+      <details key="start" value="2370"/>
+      <details key="end" value="2379"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.247" references="/0/generateElement/%/%.24">
+      <details key="start" value="2439"/>
+      <details key="end" value="2496"/>
+      <details key="line" value="87"/>
+    </eAnnotations>
+    <eAnnotations source="positions.248" references="/0/generateElement/%/%.25">
+      <details key="start" value="2502"/>
+      <details key="end" value="2615"/>
+      <details key="line" value="91"/>
+    </eAnnotations>
+    <eAnnotations source="positions.249" references="/0/generateElement/%/%.25/%">
+      <details key="start" value="2572"/>
+      <details key="end" value="2588"/>
+      <details key="line" value="92"/>
+    </eAnnotations>
+    <eAnnotations source="positions.250" references="/0/generateElement/%/%.25/%.1">
+      <details key="start" value="2589"/>
+      <details key="end" value="2595"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.251" references="/0/generateElement/%/%.25/%.1/t">
+      <details key="start" value="2589"/>
+      <details key="end" value="2590"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.252" references="/0/generateElement/%/%.25/%.2">
+      <details key="start" value="2597"/>
+      <details key="end" value="2603"/>
+      <details key="line" value="92"/>
+    </eAnnotations>
+    <eAnnotations source="positions.253" references="/0/generateElement/%/%.25/t">
+      <details key="start" value="2508"/>
+      <details key="end" value="2534"/>
+      <details key="line" value="91"/>
+    </eAnnotations>
+    <eAnnotations source="positions.254" references="/0/generateElement/%/%.25/%.3">
+      <details key="start" value="2537"/>
+      <details key="end" value="2569"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.255" references="/0/generateElement/%/%.25/%.3/aTerminal">
+      <details key="start" value="2537"/>
+      <details key="end" value="2546"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.256" references="/0/generateElement/%/%.26">
+      <details key="start" value="2616"/>
+      <details key="end" value="2644"/>
+      <details key="line" value="94"/>
+    </eAnnotations>
+    <eAnnotations source="positions.257" references="/0/generateElement/%/%.27">
+      <details key="start" value="158"/>
+      <details key="end" value="173"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.258" references="/0/generateElement/%/%.28">
+      <details key="start" value="182"/>
+      <details key="end" value="189"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.259" references="/0/generateElement/aTerminal">
+      <details key="start" value="111"/>
+      <details key="end" value="131"/>
+      <details key="line" value="4"/>
+    </eAnnotations>
+  </ecore:EAnnotation>
+</xmi:XMI>

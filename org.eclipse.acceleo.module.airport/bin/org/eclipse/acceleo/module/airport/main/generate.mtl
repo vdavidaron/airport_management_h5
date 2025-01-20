@@ -1,0 +1,98 @@
+[comment encoding = UTF-8 /]
+[module generate('http://example.org/airport')]
+
+[template public generateElement(aTerminal : Terminal)]
+[comment @main/]
+[file ('Terminal.html', false, 'UTF-8')]
+<html>
+	<style>
+	table, th, td {
+	  border:1px solid black;
+	  border-collapse: collapse;
+	}
+	th, td {
+	  padding: 8px;
+	  text-align: left;
+	}
+	</style>
+  <head>
+    <title>Terminal Overview</title>
+  </head>
+  <body>
+    <h1>Terminal: [aTerminal.name/]</h1>
+
+    <h2>Drop-off</h2>
+    <p>Name: [aTerminal.dropoff.name/]</p>
+    <p>Area Corner Y: [aTerminal.dropoff.areaCorners.y/]</p>
+
+    <h2>Floors</h2>
+    <ul>
+      [for (f : Floor | aTerminal.floors)]
+      <li>[f.name/]</li>
+      [/for]
+    </ul>
+
+    <h2>Airside</h2>
+    <p>Floor: [aTerminal.airside.floor.name/]</p>
+    <h3>Gate Area</h3>
+    <p>Name: [aTerminal.airside.gateArea.name/]</p>
+    <p>Total Gates: [aTerminal.airside.gateArea.totalGates/]</p>
+    <p>Area Corner Y: [aTerminal.airside.gateArea.areaCorners.y/]</p>
+    <ul>
+      <li>Gate Name: [aTerminal.airside.gateArea.gates.name/]</li>
+      <li>Flight: [aTerminal.airside.gateArea.gates.flight/]</li>
+    </ul>
+
+    <h2>Landside</h2>
+    <p>Floor: [aTerminal.landside.floor.name/]</p>
+    <h3>Departure Area</h3>
+    <p>Name: [aTerminal.landside.departureArea.name/]</p>
+    <h4>Baggage Drop-Off</h4>
+    <p>Area Corners: [aTerminal.landside.departureArea.baggageDropOff.areaCorners/]</p>
+    <p>Counters: [aTerminal.landside.departureArea.baggageDropOff.counters/]</p>
+    <h3>Arrival Area</h3>
+    <p>Name: [aTerminal.landside.arrivalArea.name/]</p>
+    <h4>Baggage Claim</h4>
+    <p>Area Corners: [aTerminal.landside.arrivalArea.baggageClaim.areaCorners/]</p>
+    <p>Belts: [aTerminal.landside.arrivalArea.baggageClaim.belts/]</p>
+    <h4>Customs: [aTerminal.landside.arrivalArea.customs/]</h4>
+
+    <h2>Flights</h2>
+    <table>
+      <tr>
+        <th>Name</th>
+        <th>Flight Number</th>
+        <th>Time</th>
+        <th>Type</th>
+        <th>City</th>
+        <th>International</th>
+      </tr>
+      [for (f : Flight | aTerminal.flights)]
+      <tr>
+        <td>[f.name/]</td>
+        <td>[f.flightNumber/]</td>
+        <td>[f.time/]</td>
+        <td>[f.type/]</td>
+        <td>[f.city/]</td>
+        <td>[f.isInternational/]</td>
+      </tr>
+      [/for]
+    </table>
+
+    <h2>Parking Areas</h2>
+    <ul>
+      [for (p : ParkingArea | aTerminal.ParkingAreas)]
+      <li>Name: [p.name/]</li>
+      [/for]
+    </ul>
+
+    <h2>Transportation Services</h2>
+    <ul>
+      [for (t : TransportationServices | aTerminal.TransportationServices)]
+      <li>Name: [t.name/]</li>
+      [/for]
+    </ul>
+  </body>
+</html>
+[/file]
+[/template]

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<am:Terminal
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:am="http://example.org/airport"
+    xsi:schemaLocation="http://example.org/airport /airport_management/model/airport_management.ecore"
+    name="Terminal1">
+  <dropoff name="DropOff1">
+    <areaCorners
+        y="10"/>
+  </dropoff>
+  <floors name="Floor1"/>
+  <airside>
+    <floor name="1"/>
+    <gateArea
+        name="GateArea1"
+        totalGates="1">
+      <areaCorners
+          y="10"/>
+      <gates
+          name="1"
+          flight="//@flights.0"/>
+    </gateArea>
+  </airside>
+  <landside>
+    <floor name="1"/>
+    <departureArea
+        name="1">
+      <areaCorners/>
+      <security/>
+      <checkIn>
+        <counters/>
+      </checkIn>
+      <baggageDropOff>
+        <areaCorners/>
+        <counters/>
+      </baggageDropOff>
+    </departureArea>
+    <arrivalArea
+        name="1">
+      <areaCorners/>
+      <baggageClaim>
+        <areaCorners/>
+        <belts/>
+      </baggageClaim>
+      <customs/>
+    </arrivalArea>
+  </landside>
+  <flights name="W94352"
+      flightNumber="W94352"
+      time="11:30"
+      type="departure"
+      city="Budapest"
+      isInternational="true"/>
+  <ParkingAreas
+      name="ParkingArea1">
+    <areaCorners/>
+  </ParkingAreas>
+  <TransportationServices
+      name="Taxi">
+    <areaCorners/>
+  </TransportationServices>
+</am:Terminal>
