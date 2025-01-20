@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<amr:Terminal xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:amr="http://example.org/airport_refined" name="Terminal1">
+  <floors name="GroundFloor"/>
+  <ParkingAreas/>
+</amr:Terminal>

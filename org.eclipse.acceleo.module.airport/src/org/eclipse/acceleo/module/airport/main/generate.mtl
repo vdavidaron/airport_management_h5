@@ -1,20 +1,19 @@
-[comment encoding = UTF-8 /]
 [module generate('http://example.org/airport')]
 
 [template public generateElement(aTerminal : Terminal)]
 [comment @main/]
 [file ('Terminal.html', false, 'UTF-8')]
 <html>
-	<style>
-	table, th, td {
-	  border:1px solid black;
-	  border-collapse: collapse;
-	}
-	th, td {
-	  padding: 8px;
-	  text-align: left;
-	}
-	</style>
+  <style>
+    table, th, td {
+      border: 1px solid black;
+      border-collapse: collapse;
+    }
+    th, td {
+      padding: 8px;
+      text-align: left;
+    }
+  </style>
   <head>
     <title>Terminal Overview</title>
   </head>
@@ -23,7 +22,12 @@
 
     <h2>Drop-off</h2>
     <p>Name: [aTerminal.dropoff.name/]</p>
-    <p>Area Corner Y: [aTerminal.dropoff.areaCorners.y/]</p>
+    <h3>Area Corners:</h3>
+    <ul>
+      [for (corner : Point | aTerminal.dropoff.areaCorners)]
+      <li>X: [corner.x/], Y: [corner.y/]</li>
+      [/for]
+    </ul>
 
     <h2>Floors</h2>
     <ul>
@@ -37,10 +41,17 @@
     <h3>Gate Area</h3>
     <p>Name: [aTerminal.airside.gateArea.name/]</p>
     <p>Total Gates: [aTerminal.airside.gateArea.totalGates/]</p>
-    <p>Area Corner Y: [aTerminal.airside.gateArea.areaCorners.y/]</p>
+    <h4>Area Corners:</h4>
     <ul>
-      <li>Gate Name: [aTerminal.airside.gateArea.gates.name/]</li>
-      <li>Flight: [aTerminal.airside.gateArea.gates.flight/]</li>
+      [for (corner : Point | aTerminal.airside.gateArea.areaCorners)]
+      <li>X: [corner.x/], Y: [corner.y/]</li>
+      [/for]
+    </ul>
+    <h4>Gates:</h4>
+    <ul>
+      [for (gate : Gate | aTerminal.airside.gateArea.gates)]
+      <li>Gate Name: [gate.name/], Boarding: [gate.boarding/], Flight: [gate.flight.name/]</li>
+      [/for]
     </ul>
 
     <h2>Landside</h2>
@@ -48,14 +59,34 @@
     <h3>Departure Area</h3>
     <p>Name: [aTerminal.landside.departureArea.name/]</p>
     <h4>Baggage Drop-Off</h4>
-    <p>Area Corners: [aTerminal.landside.departureArea.baggageDropOff.areaCorners/]</p>
-    <p>Counters: [aTerminal.landside.departureArea.baggageDropOff.counters/]</p>
+    <ul>
+      [for (corner : Point | aTerminal.landside.departureArea.baggageDropOff.areaCorners)]
+      <li>X: [corner.x/], Y: [corner.y/]</li>
+      [/for]
+    </ul>
+    <h5>Counters:</h5>
+    <ul>
+      [for (counter : Counter | aTerminal.landside.departureArea.baggageDropOff.counters)]
+      <li>Counter Name: [counter.name/], Flight: [counter.flight.name/]</li>
+      [/for]
+    </ul>
+
     <h3>Arrival Area</h3>
     <p>Name: [aTerminal.landside.arrivalArea.name/]</p>
     <h4>Baggage Claim</h4>
-    <p>Area Corners: [aTerminal.landside.arrivalArea.baggageClaim.areaCorners/]</p>
-    <p>Belts: [aTerminal.landside.arrivalArea.baggageClaim.belts/]</p>
-    <h4>Customs: [aTerminal.landside.arrivalArea.customs/]</h4>
+    <ul>
+      [for (corner : Point | aTerminal.landside.arrivalArea.baggageClaim.areaCorners)]
+      <li>X: [corner.x/], Y: [corner.y/]</li>
+      [/for]
+    </ul>
+    <h5>Belts:</h5>
+    <ul>
+      [for (belt : Belt | aTerminal.landside.arrivalArea.baggageClaim.belts)]
+      <li>Belt Name: [belt.name/], Flight: [belt.flight.name/]</li>
+      [/for]
+    </ul>
+    <h4>Customs</h4>
+    <p>[aTerminal.landside.arrivalArea.customs.name/]</p>
 
     <h2>Flights</h2>
     <table>
@@ -83,13 +114,23 @@
     <ul>
       [for (p : ParkingArea | aTerminal.ParkingAreas)]
       <li>Name: [p.name/]</li>
+      <ul>
+        [for (corner : Point | p.areaCorners)]
+        <li>X: [corner.x/], Y: [corner.y/]</li>
+        [/for]
+      </ul>
       [/for]
     </ul>
 
     <h2>Transportation Services</h2>
     <ul>
       [for (t : TransportationServices | aTerminal.TransportationServices)]
-      <li>Name: [t.name/]</li>
+      <li>Name: [t.name/], Type: [t.type/]</li>
+      <ul>
+        [for (corner : Point | t.areaCorners)]
+        <li>X: [corner.x/], Y: [corner.y/]</li>
+        [/for]
+      </ul>
       [/for]
     </ul>
   </body>

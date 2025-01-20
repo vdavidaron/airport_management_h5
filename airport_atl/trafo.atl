@@ -1,0 +1,40 @@
+-- Specify paths to the metamodels
+-- @path AIRPORT=/airport_management/model/airport_management.ecore
+-- @path REFINED=/airport_management_refined/model/airport_management_refined.ecore
+
+module trafo;
+
+-- Declare the input and output models
+create OUT : REFINED from IN : AIRPORT;
+
+-- Rule to transform Terminal from AIRPORT to REFINED
+rule Terminal2Terminal {
+  from
+    s : AIRPORT!Terminal
+  to
+    t : REFINED!Terminal (
+      name <- s.name,
+      floors <- s.floors->collect(f | thisModule.Floor2Floor(f)),
+	  ParkingAreas <- s.ParkingAreas->collect(src | thisModule.ParkingAreaToCarParkingArea(src))
+    )
+}
+
+-- Lazy rule to transform Floor from AIRPORT to REFINED
+lazy rule Floor2Floor {
+  from
+    f : AIRPORT!Floor
+  to
+    r : REFINED!Floor (
+      name <- f.name
+    )
+}
+
+-- Rule to transform ParkingArea to CarParkingArea
+lazy rule ParkingAreaToCarParkingArea {
+  from
+    src : AIRPORT!ParkingArea
+  to
+    tgt : REFINED!CarParkingArea (
+      name <- src.name
+    )
+}
