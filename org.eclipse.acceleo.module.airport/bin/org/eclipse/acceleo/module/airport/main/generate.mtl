@@ -2,24 +2,31 @@
 
 [template public generateElement(aTerminal : Terminal)]
 [comment @main/]
-[file ('Terminal.html', false, 'UTF-8')]
+[file ('TerminalIndex.html', false, 'UTF-8')]
 <html>
-  <style>
-    table, th, td {
-      border: 1px solid black;
-      border-collapse: collapse;
-    }
-    th, td {
-      padding: 8px;
-      text-align: left;
-    }
-  </style>
   <head>
     <title>Terminal Overview</title>
   </head>
   <body>
     <h1>Terminal: [aTerminal.name/]</h1>
+    <ul>
+      <li><a href="DropOff.html">Drop-off</a></li>
+      <li><a href="Airside.html">Airside</a></li>
+      <li><a href="Landside.html">Landside</a></li>
+      <li><a href="Flights.html">Flights</a></li>
+      <li><a href="ParkingAreas.html">Parking Areas</a></li>
+      <li><a href="TransportationServices.html">Transportation Services</a></li>
+    </ul>
+  </body>
+</html>
+[/file]
 
+[file ('DropOff.html', false, 'UTF-8')]
+<html>
+  <head>
+    <title>Drop-off</title>
+  </head>
+  <body>
     <h2>Drop-off</h2>
     <p>Name: [aTerminal.dropoff.name/]</p>
     <h3>Area Corners:</h3>
@@ -28,14 +35,17 @@
       <li>X: [corner.x/], Y: [corner.y/]</li>
       [/for]
     </ul>
+    <a href="TerminalIndex.html">Back to Terminal Overview</a>
+  </body>
+</html>
+[/file]
 
-    <h2>Floors</h2>
-    <ul>
-      [for (f : Floor | aTerminal.floors)]
-      <li>[f.name/]</li>
-      [/for]
-    </ul>
-
+[file ('Airside.html', false, 'UTF-8')]
+<html>
+  <head>
+    <title>Airside</title>
+  </head>
+  <body>
     <h2>Airside</h2>
     <p>Floor: [aTerminal.airside.floor.name/]</p>
     <h3>Gate Area</h3>
@@ -53,7 +63,17 @@
       <li>Gate Name: [gate.name/], Boarding: [gate.boarding/], Flight: [gate.flight.name/]</li>
       [/for]
     </ul>
+    <a href="TerminalIndex.html">Back to Terminal Overview</a>
+  </body>
+</html>
+[/file]
 
+[file ('Landside.html', false, 'UTF-8')]
+<html>
+  <head>
+    <title>Landside</title>
+  </head>
+  <body>
     <h2>Landside</h2>
     <p>Floor: [aTerminal.landside.floor.name/]</p>
     <h3>Departure Area</h3>
@@ -70,7 +90,6 @@
       <li>Counter Name: [counter.name/], Flight: [counter.flight.name/]</li>
       [/for]
     </ul>
-
     <h3>Arrival Area</h3>
     <p>Name: [aTerminal.landside.arrivalArea.name/]</p>
     <h4>Baggage Claim</h4>
@@ -87,7 +106,17 @@
     </ul>
     <h4>Customs</h4>
     <p>[aTerminal.landside.arrivalArea.customs.name/]</p>
+    <a href="TerminalIndex.html">Back to Terminal Overview</a>
+  </body>
+</html>
+[/file]
 
+[file ('Flights.html', false, 'UTF-8')]
+<html>
+  <head>
+    <title>Flights</title>
+  </head>
+  <body>
     <h2>Flights</h2>
     <table>
       <tr>
@@ -109,7 +138,17 @@
       </tr>
       [/for]
     </table>
+    <a href="TerminalIndex.html">Back to Terminal Overview</a>
+  </body>
+</html>
+[/file]
 
+[file ('ParkingAreas.html', false, 'UTF-8')]
+<html>
+  <head>
+    <title>Parking Areas</title>
+  </head>
+  <body>
     <h2>Parking Areas</h2>
     <ul>
       [for (p : ParkingArea | aTerminal.ParkingAreas)]
@@ -121,7 +160,17 @@
       </ul>
       [/for]
     </ul>
+    <a href="TerminalIndex.html">Back to Terminal Overview</a>
+  </body>
+</html>
+[/file]
 
+[file ('TransportationServices.html', false, 'UTF-8')]
+<html>
+  <head>
+    <title>Transportation Services</title>
+  </head>
+  <body>
     <h2>Transportation Services</h2>
     <ul>
       [for (t : TransportationServices | aTerminal.TransportationServices)]
@@ -133,6 +182,7 @@
       </ul>
       [/for]
     </ul>
+    <a href="TerminalIndex.html">Back to Terminal Overview</a>
   </body>
 </html>
 [/file]
